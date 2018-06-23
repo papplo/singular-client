@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './router/Router.js';
+import Master from './router/Master.js';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducers from './store/reducers'
+import reducers from './store/reducers';
 
 //TODO: Add applyMiddleware, to connect to api redux middleware
 
@@ -15,9 +15,9 @@ let store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Router/>
-    </BrowserRouter>
+    <Router>
+      <Master/>
+    </Router>
   </Provider>,
   document.getElementById('root')
 )
