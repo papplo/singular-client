@@ -1,0 +1,4 @@
+### ADD REDUCERS INTO THIS FOLDER ###
+  1. Name the folder with the name of the REDUCERS
+  2. Inside the folder create a index.js file with the reducer logic
+  3. export it, and import and combine it in reducers.js
