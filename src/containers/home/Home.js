@@ -10,6 +10,8 @@ class Home extends Component {
   componentWillMount() {
     // put a non-reloading fetch of user location
     this.props.userLocation !== '' && this.props.getUserLocation();
+    this.props.categories !== '' && this.props.getCategories();
+    this.props.skills !== '' && this.props.getSkills();
   }
   render () {
     return (
@@ -27,7 +29,9 @@ class Home extends Component {
 //              2. Array of 10 popular categories (filtered by user area)
 
 const mapStateToProps = (state) => ({
-  userLocation: state.userLocationReducer
+  userLocation: state.userLocationReducer,
+  categories: state.getCategories,
+  skills: state.getCategories
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -37,6 +41,18 @@ const mapDispatchToProps = (dispatch) => ({
       endpoint: config.geolookup_url,
     }
   }),
+  getCategories: () => dispatch({
+    type:'GET_CATEGORIES',
+    [API]: {
+      endpoint: config.apiary_url+'/categories',
+    }
+  }),
+  getSkills: () => dispatch({
+    type:'GET_SKILLS',
+    [API]: {
+      endpoint: config.apiary_url+'/skills?location=Barcelona',
+    }
+  })
 
 
 

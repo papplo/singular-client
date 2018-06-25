@@ -22,13 +22,6 @@ export default serverUrl => store => next => action => {
         break;
     }
 
-
-    // const fetchAsync = async () => {
-    //   let response = await fetch(action[API].endpoint, options);
-    //   let data = response.json();
-    //   return data;
-    // }
-
     fetch(action[API].endpoint, options)
       .then(data => data.json())
       .then(data => {
