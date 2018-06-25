@@ -26,12 +26,6 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  
-});
-
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({});
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
