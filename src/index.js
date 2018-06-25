@@ -7,7 +7,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './store/reducers';
 
-//TODO: Add applyMiddleware, to connect to api redux middleware
 
 let store = createStore(
   reducers,
