@@ -1,4 +1,5 @@
 export default {
-  server_url: 'http://localhost',
-  server_port: ':8080'
+  server_url: 'https://json.geoiplookup.io',
+  server_port: ':8080',
+  geolookup_url: 'https://json.geoiplookup.io',
 }

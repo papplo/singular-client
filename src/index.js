@@ -11,8 +11,8 @@ import ApiMiddleware from './middleware/apiMiddleware';
 
 let store = createStore(
   reducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(ApiMiddleware(config.server_url+config.server_port))
-
 )
 
 ReactDOM.render(
