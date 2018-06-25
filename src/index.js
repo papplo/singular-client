@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './store/reducers';
 import config from './config/config';
-
+import ApiMiddleware from './middleware/apiMiddleware';
 
 let store = createStore(
   reducers,

@@ -1,6 +1,6 @@
 export const API = Symbol('API');
 
-export default serverUrl => store => next => action {
+export default serverUrl => store => next => action => {
   if (action[API]) {
     const options = {
       headers: {
@@ -37,4 +37,4 @@ export default serverUrl => store => next => action {
   }
   next(action);
 
-};
+}
