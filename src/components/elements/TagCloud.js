@@ -1,36 +1,21 @@
 import React, { Component } from 'react';
+import AsyncList from '../AsyncList';
 
-export default class TagCloud extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  // componentWillMount() {
-  //   console.log('will mount');
-  // }
-  //
-  // componentDidUpdate() {
-  //   console.log('did update');
-  //   let element = this.props.categories.map((e)=> (e.name));
-  // }
-
-  renderCats = () => {
-    if ( typeof this.props.categories === 'object') return null
-    return this.props.categories.map((elem) => {
-      return <span
-          key={elem.pk_category_id}
-          className="tag is-rounded is-medium is-dark">
-          {elem.name}
-        </span>
-      }
-    )
-  };
-
+export default class TagCloud extends AsyncList {
   render() {
-    console.log(this.props);
     return (
-      <div className="tags">
-        {this.props.categories && this.renderCats()}
+      <div className="tags is-centered">
+        {this.renderAsyncList(
+          this.props.categories.status,
+          this.props.categories.body,
+          (elem) => (
+            <span
+              key={elem.pk_category_id}
+              className="tag is-rounded is-medium is-capitalized">
+              {elem.name}
+            </span>
+          )
+        )}
       </div>
     );
   }
