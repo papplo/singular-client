@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { Navbar } from '../../components/navbar/Navbar'
+import { Navbar } from '../../components/'
 import './Header.css';
 
 

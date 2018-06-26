@@ -5,7 +5,7 @@ import { API } from '../../middleware/apiMiddleware';
 
 import config from '../../config/config';
 
-import { BulmaBoiler } from '../../components/bulmaBoiler'
+import { BulmaBoiler, TagCloud } from '../../components/'
 
 class Home extends Component {
 
@@ -17,11 +17,16 @@ class Home extends Component {
   }
   render () {
     return (
-      <BulmaBoiler
-        userLocation={this.props.userLocation}
-        categories={this.props.categories}
-        skills={this.props.skills}
-      />
+      <div>
+        <TagCloud
+          categories={this.props.categories}
+          size="medium"
+        />
+        <BulmaBoiler
+          userLocation={this.props.userLocation}
+          skills={this.props.skills}
+        />
+      </div>
     )
   }
 }
