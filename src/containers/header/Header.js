@@ -7,7 +7,6 @@ import './Header.css';
 
 class Header extends Component {
   render () {
-    
     return (
       <div className='Header'>
         <ul>
@@ -23,7 +22,7 @@ class Header extends Component {
           <li>
             <Link to="/login">Go to login</Link>
           </li>
-      </ul>
+        </ul>
       </div>
     )
   }

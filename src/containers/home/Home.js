@@ -8,11 +8,11 @@ import config from '../../config/config';
 class Home extends Component {
 
   componentWillMount() {
-    // put a non-reloading fetch of user location
-    this.props.userLocation !== '' && this.props.getUserLocation();
-    this.props.categories !== '' && this.props.getCategories();
-    this.props.skills !== '' && this.props.getSkills();
+    if (!this.props.userLocation.status) this.props.getUserLocation();
+    if (this.props.userLocation.status && !this.props.categories.status) this.props.getCategories();
+    if (this.props.userLocation.status && !this.props.skills.status) this.props.getSkills();
   }
+
   render () {
     return (
       <div>
@@ -20,14 +20,8 @@ class Home extends Component {
       </div>
     )
   }
+
 }
-
-
-// Info needed (Client will provide): User location
-//
-
-// from server: 1. Array of 10 random skills (filtered by user area)
-//              2. Array of 10 popular categories (filtered by user area)
 
 const mapStateToProps = (state) => ({
   userLocation: state.userLocationReducer,
@@ -39,19 +33,19 @@ const mapDispatchToProps = (dispatch) => ({
   getUserLocation: () => dispatch({
     type: 'USER_LOCATION',
     [API]: {
-      endpoint: config.geolookup_url,
+      externalUrl: config.geolookup_url,
     }
   }),
   getCategories: () => dispatch({
     type:'GET_CATEGORIES',
     [API]: {
-      endpoint: config.apiary_url+'/categories',
+      endpoint: '/categories',
     }
   }),
   getSkills: () => dispatch({
     type:'GET_SKILLS',
     [API]: {
-      endpoint: config.apiary_url+'/skills?location=Barcelona',
+      endpoint: '/skills?location=Barcelona',
     }
   })
 

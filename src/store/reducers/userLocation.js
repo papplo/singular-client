@@ -1,13 +1,14 @@
-
 const userLocationReducer = (state = {}, action) => {
   switch (action.type) {
     case 'USER_LOCATION':
-      return state;
+        return {status: 'loading'};
+    case 'USER_LOCATION_FAILURE':
+        return {status: 'failure'};
     case 'USER_LOCATION_SUCCESS':
-      return action.data;
-      default:
-      return state
+        return action.responseObject;
+    default:
+      return state;
   }
 }
 
-export { userLocationReducer as default}
+export default userLocationReducer;

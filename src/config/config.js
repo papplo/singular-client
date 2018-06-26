@@ -1,6 +1,5 @@
 export default {
-  server_url: 'https://json.geoiplookup.io',
-  server_port: ':8080',
+  server_url: 'https://private-anon-dcd46c5859-cristinagf.apiary-mock.com',
+  server_port: '',
   geolookup_url: 'https://json.geoiplookup.io',
-  apiary_url: 'http://private-anon-49e93dc372-cristinagf.apiary-mock.com',
 }

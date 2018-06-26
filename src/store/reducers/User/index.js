@@ -1,11 +1,13 @@
 const user = (state = {}, action) => {
   switch (action.type) {
+    case 'FETCH_USER':
+        return {status: 'loading'};
+    case 'FETCH_USER_FAILURE':
+        return {status: 'failure'};
     case 'FETCH_USER_SUCCESS':
-        return action.data
-    case 'FETCH_UPDATE_USER_SUCCESS':
-      return action.data
+        return action.responseObject;
     default:
-      return state
+      return state;
   }
 }
 

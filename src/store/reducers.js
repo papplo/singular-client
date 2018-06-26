@@ -4,7 +4,8 @@ import { combineReducers } from 'redux';
 import userLocationReducer from './reducers/userLocation';
 import getCategories from './reducers/categories';
 import getSkills from './reducers/skills';
+import user from './reducers/User';
 
 export default combineReducers({
-  userLocationReducer, getCategories, getSkills
+  userLocationReducer, getCategories, getSkills, user
 })

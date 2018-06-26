@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Login.css';
 import FacebookLogin from 'react-facebook-login';
+import { API } from '../../middleware/apiMiddleware';
 
 // Once we have working server, replace the state and map dispatch 
 // to props with the facebook response, witch in turn should should 
@@ -12,17 +13,14 @@ import FacebookLogin from 'react-facebook-login';
 
 class Login extends Component {
 
-  state = {
-    logged: false,
-  }
-
   responseFacebook = (response) => {
     console.log('inside callback', response);
     this.setState({logged: true})
+    this.props.fetchUser('123')
   }
 
   logInOrRedirect = () => {
-    if (this.state.logged) {
+    if (this.props.user.name) {
       return <Redirect to='/me' />
     } else {
       return (
@@ -40,7 +38,7 @@ class Login extends Component {
   render () {
     return (
       <div>
-        <p>Login Page</p>
+        <p>Login Page. user: {this.props.user.name}</p>
         {this.logInOrRedirect()}
       </div>
     )
@@ -48,10 +46,20 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  
+  user: state.user,
 });
+
 const mapDispatchToProps = (dispatch) => ({
-  
+  fetchUser: (FacebookUserToken) => dispatch({
+    type: 'FETCH_USER',
+    [API]: {
+      headers: {
+        'Authentication': 'lsakjdvoa97va3s2', //FacebookUserToken,
+        'Content-Type': 'Application/JSON',
+      },
+      endpoint: '/me',
+    }
+  })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
