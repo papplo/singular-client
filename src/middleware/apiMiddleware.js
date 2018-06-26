@@ -3,38 +3,22 @@ export const API = Symbol('API');
 export default serverUrl => store => next => action => {
   if (action[API]) {
     const options = {
-      // headers: {
-      //   'Content-Type': 'Application/JSON',
-      //   'Authorization': action.authorization || '',
-      // },
+      headers: action[API].headers,
       method: action[API].method || 'GET',
-      // mode: 'no-cors',
+      body: JSON.stringify(action[API].body)
     }
-
-    switch (options.method) {
-      case 'POST':
-          options.body = JSON.stringify(action[API].requestBody)
-        break;
-      case 'PUT':
-        options.body = JSON.stringify(action[API].requestBody)
-      break;
-      default:
-        break;
-    }
-
-    fetch(action[API].endpoint, options)
-      .then(data => data.json())
-      .then(data => {
-        console.log('success', data);
-        let newAction = {...action, data}
-        newAction.type = action.type + '_SUCCESS';
-        //else newAction.type = action.type + '_FAILURE';
+    
+    fetch(action[API].externalUrl || serverUrl+action[API].endpoint, options)
+    .then(response => response.json().then(data => ({status: response.status, body: data})))
+    .then(responseObject => {
+        console.log('inside fetch: ', responseObject);
+        let newAction = {...action, responseObject}
+        newAction.type = responseObject.status >= 400 ? action.type + '_FAILURE' : action.type + '_SUCCESS'; 
         delete newAction[API];
         store.dispatch(newAction);
-      })
-      .catch(e => console.log('error', e))
-
-
+        
+    })
+    .catch(e => console.log('error', e))
   }
   next(action);
 

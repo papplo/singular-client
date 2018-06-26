@@ -8,7 +8,6 @@ import './Header.css';
 
 class Header extends Component {
   render () {
-
     return (
       <Navbar />
     )
