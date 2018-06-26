@@ -8,7 +8,7 @@ class Me extends Component {
   render () {
     return (
       <div>
-        <p>Me Page, user: {this.props.user.name}</p>
+        <p>Me Page, user: {this.props.user.body.name}</p>
       </div>
     )
   }

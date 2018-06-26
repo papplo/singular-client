@@ -13,6 +13,7 @@ import SkillProfile from '../containers/skillProfile/SkillProfile';
 import Login from '../containers/login/Login';
 
 class Master extends Component {
+  
   render() {
     return (
       <div className='MasterContainer'>

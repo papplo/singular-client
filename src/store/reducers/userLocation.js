@@ -1,4 +1,4 @@
-const userLocationReducer = (state = {}, action) => {
+const userLocationReducer = (state = {status: 'unloaded'}, action) => {
   switch (action.type) {
     case 'USER_LOCATION':
         return {status: 'loading'};
