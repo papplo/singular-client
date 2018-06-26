@@ -1,25 +1,36 @@
-
 import React, { Component } from 'react';
 
 export default class TagCloud extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  // componentWillMount() {
+  //   console.log('will mount');
+  // }
+  //
+  // componentDidUpdate() {
+  //   console.log('did update');
+  //   let element = this.props.categories.map((e)=> (e.name));
+  // }
+
+  renderCats = () => {
+    if ( typeof this.props.categories === 'object') return null
+    return this.props.categories.map((elem) => {
+      return <span
+          key={elem.pk_category_id}
+          className="tag is-rounded is-medium is-dark">
+          {elem.name}
+        </span>
+      }
+    )
+  };
 
   render() {
-    console.log(this.props.categories);
+    console.log(this.props);
     return (
       <div className="tags">
-        <span className="tag is-rounded is-medium is-black">Black</span>
-        <span className="tag is-rounded is-medium is-dark">Dark</span>
-        <span className="tag is-rounded is-medium is-light">Light</span>
-        <span className="tag is-rounded is-medium is-white">White</span>
-        <span className="tag is-rounded is-medium is-primary">Primary</span>
-        <span className="tag is-rounded is-medium is-link">Link</span>
-        <span className="tag is-rounded is-medium is-info">Info</span>
-        <span className="tag is-rounded is-medium is-success">Success</span>
-        <span className="tag is-rounded is-medium is-warning">Warning</span>
-        <span className="tag is-rounded is-medium is-danger">Danger</span>
+        {this.props.categories && this.renderCats()}
       </div>
     );
   }
