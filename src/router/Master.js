@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 
+import '../style/theme.css';
+
 import Category from '../containers/category/Category';
 import DiscoverCategories from '../containers/discoverCategories/DiscoverCategories';
 import DiscoverSkills from '../containers/discoverSkills/DiscoverSkills';
@@ -18,7 +20,6 @@ class Master extends Component {
       <div className='MasterContainer'>
         <Header/>
         <Switch>
-          <div>
             <Route exact path="/" component={Home} />
             <Route path="/discover-categories" component={DiscoverCategories} />
             <Route path="/discover-skills" component={DiscoverSkills} />
@@ -28,7 +29,6 @@ class Master extends Component {
             <Route path="/me" component={Me} />
             <Route path="/inbox" component={Inbox} />
             <Route path="/login" component={Login} />
-          </div>
         </Switch>
       </div>
     );

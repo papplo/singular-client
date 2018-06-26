@@ -5,6 +5,8 @@ import { API } from '../../middleware/apiMiddleware';
 
 import config from '../../config/config';
 
+import { BulmaBoiler } from '../../components/bulmaBoiler'
+
 class Home extends Component {
 
   componentWillMount() {
@@ -15,9 +17,11 @@ class Home extends Component {
   }
   render () {
     return (
-      <div>
-        <p>HELLO WORLD</p>
-      </div>
+      <BulmaBoiler
+        userLocation={this.props.userLocation}
+        categories={this.props.categories}
+        skills={this.props.skills}
+      />
     )
   }
 }
