@@ -1,13 +1,14 @@
 const categoriesReducer = (state = {}, action) => {
   switch (action.type) {
     case 'GET_CATEGORIES':
-        return state;
+        return {status: 'loading'};
+    case 'GET_CATEGORIES_FAILURE':
+        return {status: 'failure'};
     case 'GET_CATEGORIES_SUCCESS':
-    return action.data;
+        return action.responseObject;
     default:
-    return state
-
+      return state;
   }
 }
 
-export {categoriesReducer as default}
+export default categoriesReducer;

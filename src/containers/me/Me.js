@@ -8,12 +8,14 @@ class Me extends Component {
   render () {
     return (
       <div>
-        <p>Me Page</p>
+        <p>Me Page, user: {this.props.user.name}</p>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
 const mapDispatchToProps = (dispatch) => ({});
 export default connect(mapStateToProps, mapDispatchToProps)(Me);
