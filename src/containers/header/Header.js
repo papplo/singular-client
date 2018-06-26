@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
+import { Navbar } from '../../components/'
 import './Header.css';
 
 
@@ -8,22 +9,7 @@ import './Header.css';
 class Header extends Component {
   render () {
     return (
-      <div className='Header'>
-        <ul>
-          <li>
-            <Link to="/">Go to Home</Link>
-          </li>
-          <li>
-            <Link to="/me">Go to Me </Link>
-          </li>
-          <li>
-            <Link to="/category">Go to topics</Link>
-          </li>
-          <li>
-            <Link to="/login">Go to login</Link>
-          </li>
-        </ul>
-      </div>
+      <Navbar />
     )
   }
 }
