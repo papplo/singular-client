@@ -4,7 +4,7 @@ import './Home.css';
 
 import { fetchUserLocationAction, fetchCategoriesAction, fetchSkillsAction } from '../../store/actions/actions';
 
-import { BulmaBoiler, TagCloud } from '../../components/'
+import { Hero, BulmaBoiler, TagCloud, ActivityList } from '../../components/'
 
 class Home extends Component {
 
@@ -21,24 +21,21 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <TagCloud
-          categories={this.props.categories}
-          size="medium"
-        />
-        <BulmaBoiler
-          userLocation={this.props.userLocation}
-          skills={this.props.skills}
-        />
+        <Hero userLocation={this.props.userLocation}>
+          <TagCloud categories={this.props.categories}/>
+          <p className="is-size-6 has-text-centered">Choose a Topic or explore all Skills</p>
+        </Hero>
+        <ActivityList skills={this.props.skills}/>
       </div>
     )
   }
-  
+
 }
 
 const mapStateToProps = (state) => ({
   userLocation: state.userLocationReducer,
   categories: state.getCategories,
-  skills: state.getCategories
+  skills: state.getSkills
 });
 
 const mapDispatchToProps = (dispatch) => ({
