@@ -1,4 +1,4 @@
-const skillsReducer = (state = {}, action) => {
+const skillsReducer = (state = {status: 'unloaded'}, action) => {
   switch (action.type) {
     case 'GET_SKILLS':
         return {status: 'loading'};

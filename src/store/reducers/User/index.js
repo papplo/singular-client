@@ -1,4 +1,4 @@
-const user = (state = {}, action) => {
+const user = (state = {status: 'unloaded'}, action) => {
   switch (action.type) {
     case 'FETCH_USER':
         return {status: 'loading'};

@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Home.css';
-import { API } from '../../middleware/apiMiddleware';
 
-import config from '../../config/config';
+import { fetchUserLocationAction, fetchCategoriesAction, fetchSkillsAction } from '../../store/actions/actions';
 
 import { BulmaBoiler, TagCloud } from '../../components/'
 
 class Home extends Component {
 
   componentWillMount() {
-    if (!this.props.userLocation.status) this.props.getUserLocation();
-    if (this.props.userLocation.status && !this.props.categories.status) this.props.getCategories();
-    if (this.props.userLocation.status && !this.props.skills.status) this.props.getSkills();
+    if (this.props.userLocation.status === 'unloaded') this.props.getUserLocation();
+  }
+
+  componentDidUpdate() {
+    console.log('component updated');
+    if (this.props.userLocation.status === 200 && this.props.categories.status === 'unloaded') this.props.getCategories();
+    if (this.props.userLocation.status === 200 && this.props.skills.status === 'unloaded') this.props.getSkills();
   }
 
   render () {
@@ -29,7 +32,7 @@ class Home extends Component {
       </div>
     )
   }
-
+  
 }
 
 const mapStateToProps = (state) => ({
@@ -39,26 +42,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getUserLocation: () => dispatch({
-    type: 'USER_LOCATION',
-    [API]: {
-      externalUrl: config.geolookup_url,
-    }
-  }),
-  getCategories: () => dispatch({
-    type:'GET_CATEGORIES',
-    [API]: {
-      endpoint: '/categories',
-    }
-  }),
-  getSkills: () => dispatch({
-    type:'GET_SKILLS',
-    [API]: {
-      endpoint: '/skills?location=Barcelona',
-    }
-  })
-
-
+  getUserLocation: () => dispatch(fetchUserLocationAction),
+  getCategories: () => dispatch(fetchCategoriesAction),
+  getSkills: () => dispatch(fetchSkillsAction),
 
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

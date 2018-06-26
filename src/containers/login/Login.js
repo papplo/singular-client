@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Login.css';
 import FacebookLogin from 'react-facebook-login';
-import { API } from '../../middleware/apiMiddleware';
+import { fetchUserAction } from '../../store/actions/actions';
 
 // Once we have working server, replace the state and map dispatch 
 // to props with the facebook response, witch in turn should should 
@@ -50,16 +50,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (FacebookUserToken) => dispatch({
-    type: 'FETCH_USER',
-    [API]: {
-      headers: {
-        'Authentication': 'lsakjdvoa97va3s2', //FacebookUserToken,
-        'Content-Type': 'Application/JSON',
-      },
-      endpoint: '/me',
-    }
-  })
+  fetchUser: (FacebookUserToken) => dispatch(fetchUserAction)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

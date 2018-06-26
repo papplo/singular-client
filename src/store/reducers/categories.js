@@ -1,4 +1,4 @@
-const categoriesReducer = (state = {}, action) => {
+const categoriesReducer = (state = {status: 'unloaded'}, action) => {
   switch (action.type) {
     case 'GET_CATEGORIES':
         return {status: 'loading'};
