@@ -22,6 +22,7 @@ class Home extends Component {
   }
 }
 
+
 // Info needed (Client will provide): User location
 //
 

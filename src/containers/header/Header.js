@@ -20,6 +20,9 @@ class Header extends Component {
           <li>
             <Link to="/category">Go to topics</Link>
           </li>
+          <li>
+            <Link to="/login">Go to login</Link>
+          </li>
       </ul>
       </div>
     )

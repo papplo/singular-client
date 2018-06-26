@@ -10,10 +10,7 @@ import Inbox from '../containers/inbox/Inbox';
 import Me from '../containers/me/Me';
 import Profile from '../containers/profile/Profile';
 import SkillProfile from '../containers/skillProfile/SkillProfile';
-
-//TODO: Create signin/signup with redirect to previous page
-//Include? :  <Route path="/edit-profile" component={EditProfile} />
-//            <Route path="/edit-skills" component={EditSkills} />
+import Login from '../containers/login/Login';
 
 class Master extends Component {
   render() {
@@ -30,6 +27,7 @@ class Master extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/me" component={Me} />
             <Route path="/inbox" component={Inbox} />
+            <Route path="/login" component={Login} />
           </div>
         </Switch>
       </div>
