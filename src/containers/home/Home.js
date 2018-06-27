@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Hero, BulmaBoiler, TagCloud, ActivityList } from '../../components/'
 import './Home.css';
-import { BulmaBoiler, TagCloud } from '../../components/'
 
 class Home extends Component {
-
   render () {
     return (
-      <div className='HomeContainer'>
-        <TagCloud
-          categories={this.props.categories}
-          size="medium"
-        />
+      <div>
+        <Hero
+          title="Learn something exiting today!"
+          subTitle=""
+          userLocation="">
+          <TagCloud categories={this.props.categories}/>
+          <p className="is-size-6 has-text-centered">Pick a Topic or
+            <Link to="/discover-categories">explore all</Link>
+          </p>
+        </Hero>
+        <ActivityList skills={this.props.skills}/>
       </div>
     )
   }
-  
 }
 
 const mapStateToProps = (state) => ({

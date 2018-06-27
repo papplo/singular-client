@@ -5,4 +5,6 @@
 
 export { default as BulmaBoiler } from './bulmaBoiler'
 export { default as Navbar } from './navbar/Navbar';
+export { default as Hero } from './hero/Hero';
 export { default as TagCloud } from './elements/TagCloud';
+export { default as ActivityList } from './skills/ActivityList';
