@@ -8,10 +8,10 @@ export default (props) => {
       </p>
       <div className="container">
         <h1 className="title">
-          Discover Skills shared by Peers in {props.userLocation.city}
+          Discover Skills shared by Peers in {props.location}
         </h1>
         <p className="subtitle">
-          Not in {props.userLocation.city}? <strong>Change your location</strong>!
+          Not in {props.location.status}? <strong>Change your location</strong>!
         </p>
       </div>
     </section>
