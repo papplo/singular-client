@@ -37,6 +37,19 @@ const idSkill = (state = {status: 'unloaded'}, action) => {
     }
 }
 
+const genreSkills = (state = {status: 'unloaded'}, action) => {
+    switch (action.type) {
+      case 'FETCH_SKILLS_CATEGORY':
+          return {status: 'loading'};
+      case 'FETCH_SKILLS_CATEGORY_FAILURE':
+          return {status: 'failure'};
+      case 'FETCH_SKILLS_CATEGORY_SUCCESS':
+          return action.responseObject;
+      default:
+        return state;
+    }
+}
+
 const deleteSkill = (state = {status: 'unloaded'}, action) => {
     switch (action.type) {
       case 'DELETE_SKILL':
@@ -54,5 +67,6 @@ export {
     skills,
     createSkill,
     idSkill,
-    deleteSkill
+    deleteSkill,
+    genreSkills,
 }

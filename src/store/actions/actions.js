@@ -39,13 +39,24 @@ const fetchLocationAction = {
   }
 }
 
-const fetchSkillsActionCreator = (location, category = '') => ({
-    type:'FETCH_SKILLS',
-    [API]: {
-      endpoint: `/skills?location=${location.body.city}&category=${category}`,
+const fetchSkillsActionCreator = (location, category) => {
+  if (category) {
+    return {
+      type:'FETCH_SKILLS_CATEGORY',
+      [API]: {
+        endpoint: `/skills?location=${location.body.city}&category=${category}`,
+      }
     }
-  
-});
+  } else {
+    return {
+      type:'FETCH_SKILLS',
+      [API]: {
+        endpoint: `/skills?location=${location.body.city}`,
+      }
+    }
+  }
+    
+};
 
 export {
   fetchProfileActionCreator,
