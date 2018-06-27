@@ -23,7 +23,7 @@ class Master extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/discover-categories" component={DiscoverCategories} />
             <Route path="/discover-skills" component={DiscoverSkills} />
-            <Route path="/category/" component={Category} />
+            <Route path="/category" component={Category} />
             <Route path="/skill-profile" component={SkillProfile} />
             <Route path="/profile" component={Profile} />
             <Route path="/me" component={Me} />

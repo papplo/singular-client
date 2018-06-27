@@ -9,12 +9,11 @@ import './DiscoverCategories.css';
 
 class DiscoverCategories extends Component {
   render () {
-    console.log('location:', this.props.location)
     return (
       <div>
         <Hero
           title="Discover Skills"
-          userLocation={this.props.userLocation} />
+          location={this.props.location} />
         <TagCloud categories={this.props.categories} />
       </div>
     )
@@ -22,7 +21,7 @@ class DiscoverCategories extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  userLocation: state.location,
+  location: state.location,
   categories: state.categories,
 });
 const mapDispatchToProps = (dispatch) => ({
