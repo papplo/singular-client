@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Home.css';
-
 import { fetchUserLocationAction, fetchCategoriesAction, fetchSkillsAction } from '../../store/actions/actions';
 
+import { Link } from 'react-router-dom';
 import { Hero, BulmaBoiler, TagCloud, ActivityList } from '../../components/'
+import './Home.css';
 
 class Home extends Component {
 
@@ -21,9 +21,14 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <Hero userLocation={this.props.userLocation}>
+        <Hero
+          title="Discover Skills shared by Peers in "
+          subTitle=""
+          userLocation={this.props.userLocation}>
           <TagCloud categories={this.props.categories}/>
-          <p className="is-size-6 has-text-centered">Choose a Topic or explore all Skills</p>
+          <p className="is-size-6 has-text-centered">Choose a Topic or
+            <Link to="/category"> explore all Skills</Link>
+          </p>
         </Hero>
         <ActivityList skills={this.props.skills}/>
       </div>
