@@ -75,5 +75,15 @@
 // $variable-columns: true !default
 
 
+// Navbar navmenu on touch is-active
+
+
+.navbar-menu {
+  &.is-active {
+    display: block;
+    position: absolute;
+    width: 100vh;
+  }
+}
 // Main styling with bulma
 @import 'bulma/bulma.sass';
