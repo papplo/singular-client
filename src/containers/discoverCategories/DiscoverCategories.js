@@ -13,7 +13,7 @@ class DiscoverCategories extends Component {
       <div>
         <Hero
           title="Discover Skills"
-          location={this.props.location} />
+          userLocation={this.props.location} />
         <TagCloud categories={this.props.categories} />
       </div>
     )
