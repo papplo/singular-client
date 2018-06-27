@@ -13,7 +13,7 @@ class DiscoverSkills extends Component {
       <div>
         <Hero
           title="Discover Skills offered in "
-          userLocation={this.props.userLocation} />
+          userLocation={this.props.location} />
         <ActivityList skills={this.props.skills}/>
       </div>
     )
@@ -21,8 +21,8 @@ class DiscoverSkills extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  userLocation: state.userLocationReducer,
-  skills: state.getSkills,
+  location: state.location,
+  skills: state.skills,
 });
 const mapDispatchToProps = (dispatch) => ({});
 export default connect(mapStateToProps, mapDispatchToProps)(DiscoverSkills);

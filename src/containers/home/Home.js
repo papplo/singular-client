@@ -9,9 +9,9 @@ class Home extends Component {
     return (
       <div>
         <Hero
-          title="Learn something exiting today!"
+          title="Learn something exiting today in "
           subTitle=""
-          userLocation="">
+          userLocation={this.props.location}>
           <TagCloud categories={this.props.categories}/>
           <p className="is-size-6 has-text-centered">Pick a Topic or
             <Link to="/discover-categories">explore all</Link>

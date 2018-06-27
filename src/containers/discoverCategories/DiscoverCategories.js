@@ -13,7 +13,7 @@ class DiscoverCategories extends Component {
       <div>
         <Hero
           title="Discover Skills"
-          userLocation={this.props.userLocation} />
+          userLocation={this.props.location} />
         <TagCloud categories={this.props.categories} />
       </div>
     )
@@ -21,8 +21,8 @@ class DiscoverCategories extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  userLocation: state.userLocationReducer,
-  categories: state.getCategories,
+  location: state.location,
+  categories: state.categories,
 });
 const mapDispatchToProps = (dispatch) => ({
 
