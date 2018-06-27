@@ -1,42 +1,55 @@
 import { API } from '../../middleware/apiMiddleware';
 import config from '../../config/config';
 
-const fetchUserAction = {
-  type: 'FETCH_USER',
-  [API]: {
-    headers: {
-      'Authentication': 'lsakjdvoa97va3s2', //FacebookUserToken,
-      'Content-Type': 'Application/JSON',
-    },
-    endpoint: '/me',
-  }
-}
-
-const fetchUserLocationAction = {
-  type: 'USER_LOCATION',
-  [API]: {
-    externalUrl: config.geolookup_url,
-  }
-}
-
+//CATEGORIES
 const fetchCategoriesAction = {
-  type:'GET_CATEGORIES',
+  type:'FETCH_CATEGORIES',
   [API]: {
     endpoint: '/categories',
   }
 }
 
-const fetchSkillsAction = {
-  type:'GET_SKILLS',
+//CONVERSATIONS
+const fetchConversationsActionCreator = (userToken) => ({
+  type:'FETCH_CONVERSATIONS',
   [API]: {
-    endpoint: '/skills?location=Barcelona',
+    headers: {
+      'Authentication': userToken,
+      'Content-Type': 'Application/JSON',
+    },
+    endpoint: '/conversation',
+  }
+});
+
+const fetchProfileActionCreator = (userToken) => ({
+  type: 'FETCH_PROFILE',
+  [API]: {
+    headers: {
+      'Authentication': userToken,
+      'Content-Type': 'Application/JSON',
+    },
+    endpoint: '/me',
+  }
+})
+
+const fetchLocationAction = {
+  type: 'FETCH_LOCATION',
+  [API]: {
+    externalUrl: config.geolookup_url,
   }
 }
 
+const fetchSkillsActionCreator = (location, category = '') => ({
+    type:'FETCH_SKILLS',
+    [API]: {
+      endpoint: `/skills?location=${location.body.city}&category=${category}`,
+    }
+  
+});
 
 export {
-  fetchUserAction,
-  fetchUserLocationAction,
+  fetchProfileActionCreator,
+  fetchLocationAction,
   fetchCategoriesAction,
-  fetchSkillsAction
+  fetchSkillsActionCreator
 }
