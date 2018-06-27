@@ -1,36 +1,25 @@
 import React, { Component } from 'react';
 
 export default class TagCloud extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  // componentWillMount() {
-  //   console.log('will mount');
-  // }
-  //
-  // componentDidUpdate() {
-  //   console.log('did update');
-  //   let element = this.props.categories.map((e)=> (e.name));
-  // }
-
   renderCats = () => {
-    if ( typeof this.props.categories === 'object') return null
-    return this.props.categories.map((elem) => {
-      return <span
+    if ( this.props.categories.status === 'unLoaded') return 'no data';
+    else if (this.props.categories.status === 'Loading') return 'loading';
+    else if (this.props.categories.status === 'Failure') return 'not able to connect to server';
+    if (this.props.categories.status === 200) {
+      return this.props.categories.body.map((elem) => { // this.props.categories.status === 200
+        return <span
           key={elem.pk_category_id}
           className="tag is-rounded is-medium is-dark">
           {elem.name}
-        </span>
-      }
-    )
+          </span>;
+      })
+    }
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="tags">
-        {this.props.categories && this.renderCats()}
+        {this.renderCats()}
       </div>
     );
   }

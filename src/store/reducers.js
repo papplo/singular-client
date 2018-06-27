@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 //import individual reducers here
-import userLocationReducer from './reducers/userLocation';
-import getCategories from './reducers/categories';
-import getSkills from './reducers/skills';
-import user from './reducers/User';
-
+import location from './reducers/Location';
+import categories from './reducers/Categories';
+import { skills, createSkill, idSkill, deleteSkill } from './reducers/Skills';
+import { profile, updateProfile, user } from './reducers/User';
+import { conversations, createConversation, acceptConversation, rejectConversation, createReview, createMessage} from './reducers/Conversation';
 export default combineReducers({
-  userLocationReducer, getCategories, getSkills, user
+  location, categories, skills, profile
 })

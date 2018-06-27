@@ -1,8 +1,8 @@
 import { API } from '../../middleware/apiMiddleware';
 import config from '../../config/config';
 
-const fetchUserAction = {
-  type: 'FETCH_USER',
+const fetchProfileAction = {
+  type: 'FETCH_PROFILE',
   [API]: {
     headers: {
       'Authentication': 'lsakjdvoa97va3s2', //FacebookUserToken,
@@ -12,31 +12,34 @@ const fetchUserAction = {
   }
 }
 
-const fetchUserLocationAction = {
-  type: 'USER_LOCATION',
+const fetchLocationAction = {
+  type: 'FETCH_LOCATION',
   [API]: {
     externalUrl: config.geolookup_url,
   }
 }
 
 const fetchCategoriesAction = {
-  type:'GET_CATEGORIES',
+  type:'FETCH_CATEGORIES',
   [API]: {
     endpoint: '/categories',
   }
 }
 
-const fetchSkillsAction = {
-  type:'GET_SKILLS',
-  [API]: {
-    endpoint: '/skills?location=Barcelona',
+const fetchSkillsAction = (category = '') => {
+  return {
+    type:'FETCH_SKILLS',
+    [API]: {
+      endpoint: `/skills?location=CITY&category=${category}`,
+      location: true,
+    }
   }
+  
 }
 
-
 export {
-  fetchUserAction,
-  fetchUserLocationAction,
+  fetchProfileAction,
+  fetchLocationAction,
   fetchCategoriesAction,
   fetchSkillsAction
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Login.css';
 import FacebookLogin from 'react-facebook-login';
-import { fetchUserAction } from '../../store/actions/actions';
+import { fetchProfileAction } from '../../store/actions/actions';
 
 // Once we have working server, replace the state and map dispatch 
 // to props with the facebook response, witch in turn should should 
@@ -16,11 +16,11 @@ class Login extends Component {
   responseFacebook = (response) => {
     console.log('inside callback', response);
     this.setState({logged: true})
-    this.props.fetchUser('123')
+    this.props.fetchProfile('123')
   }
 
   logInOrRedirect = () => {
-    if (this.props.user.name) {
+    if (this.props.profile.status === 200) {
       return <Redirect to='/me' />
     } else {
       return (
@@ -38,7 +38,7 @@ class Login extends Component {
   render () {
     return (
       <div>
-        <p>Login Page. user: {this.props.user.name}</p>
+        <p>Login Page. user: {this.props.profile.name}</p>
         {this.logInOrRedirect()}
       </div>
     )
@@ -46,11 +46,11 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user,
+  profile: state.profile,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (FacebookUserToken) => dispatch(fetchUserAction)
+  fetchProfile: (FacebookUserToken) => dispatch(fetchProfileAction)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
