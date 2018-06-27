@@ -22,12 +22,12 @@ class Home extends Component {
     return (
       <div>
         <Hero
-          title="Discover Skills shared by Peers in "
+          title="Learn something exiting today!"
           subTitle=""
-          userLocation={this.props.userLocation}>
+          userLocation="">
           <TagCloud categories={this.props.categories}/>
-          <p className="is-size-6 has-text-centered">Choose a Topic or
-            <Link to="/category"> explore all Skills</Link>
+          <p className="is-size-6 has-text-centered">Pick a Topic or
+            <Link to="/discover-categories">explore all</Link>
           </p>
         </Hero>
         <ActivityList skills={this.props.skills}/>

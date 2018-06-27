@@ -12,7 +12,7 @@ export default class ActivityList extends AsyncList {
             <article className="media" key={elem.pk_skill_id}>
             <figure className="media-left">
               <p className="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
+                <img src={elem.img_url? elem.img_url:"https://bulma.io/images/placeholders/96x96.png"} alt="Placeholder image" />
               </p>
             </figure>
             <div className="media-content">
