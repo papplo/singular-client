@@ -12,9 +12,15 @@ class DiscoverCategories extends Component {
     return (
       <div>
         <Hero
-          title="Discover Skills"
-          userLocation={this.props.location} />
-        <TagCloud categories={this.props.categories} />
+          color="light"
+          title="Discover Skills shared by Peers in "
+          userLocation={this.props.location}>
+          <h2 className="subtitle has-text-centered is-size-6 has-text-grey">
+            Not in {this.props.location.status === 200 && this.props.location.body.city}? <strong>Change your location</strong>!
+          </h2>
+        </Hero>
+        <TagCloud
+          categories={this.props.categories} />
       </div>
     )
   }

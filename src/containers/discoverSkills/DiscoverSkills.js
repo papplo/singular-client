@@ -12,8 +12,13 @@ class DiscoverSkills extends Component {
     return (
       <div>
         <Hero
+          color="dark"
           title="Discover Skills offered in "
-          userLocation={this.props.location} />
+          userLocation={this.props.location}>
+          <h2 className="subtitle has-text-centered is-size-6 has-text-grey">
+            Not in {this.props.location.status === 200 && this.props.location.body.city}? <strong>Change your location</strong>!
+          </h2>
+        </Hero>
         <ActivityList skills={this.props.skills}/>
       </div>
     )
