@@ -10,23 +10,27 @@ const fetchCategoriesAction = {
 }
 
 //CONVERSATIONS
-const fetchConversationsAction = {
+const fetchConversationsActionCreator = (userToken) => ({
   type:'FETCH_CONVERSATIONS',
   [API]: {
-    endpoint: '/categories',
+    headers: {
+      'Authentication': userToken,
+      'Content-Type': 'Application/JSON',
+    },
+    endpoint: '/conversation',
   }
-}
+});
 
-const fetchProfileAction = {
+const fetchProfileActionCreator = (userToken) => ({
   type: 'FETCH_PROFILE',
   [API]: {
     headers: {
-      'Authentication': 'lsakjdvoa97va3s2', //FacebookUserToken,
+      'Authentication': userToken,
       'Content-Type': 'Application/JSON',
     },
     endpoint: '/me',
   }
-}
+})
 
 const fetchLocationAction = {
   type: 'FETCH_LOCATION',
@@ -35,18 +39,16 @@ const fetchLocationAction = {
   }
 }
 
-const fetchSkillsActionCreator = (location, category = '') => {
-  return {
+const fetchSkillsActionCreator = (location, category = '') => ({
     type:'FETCH_SKILLS',
     [API]: {
-      endpoint: `/skills?${location.body.city}=CITY&category=${category}`,
+      endpoint: `/skills?location=${location.body.city}&category=${category}`,
     }
-  }
   
-}
+});
 
 export {
-  fetchProfileAction,
+  fetchProfileActionCreator,
   fetchLocationAction,
   fetchCategoriesAction,
   fetchSkillsActionCreator
