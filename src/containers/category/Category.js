@@ -12,6 +12,10 @@ class Category extends Component {
       initialize: false,
     }
   }
+  
+  componentWillMount() {
+    if (this.props.categories.status === 200 && this.props.userLocation.status === 200 && !this.state.initialize) this.initialize();
+  }
 
   componentDidUpdate() {
     if (this.props.categories.status === 200 && this.props.userLocation.status === 200 && !this.state.initialize) this.initialize();
