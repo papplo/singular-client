@@ -1,6 +1,22 @@
 import { API } from '../../middleware/apiMiddleware';
 import config from '../../config/config';
 
+//CATEGORIES
+const fetchCategoriesAction = {
+  type:'FETCH_CATEGORIES',
+  [API]: {
+    endpoint: '/categories',
+  }
+}
+
+//CONVERSATIONS
+const fetchConversationsAction = {
+  type:'FETCH_CONVERSATIONS',
+  [API]: {
+    endpoint: '/categories',
+  }
+}
+
 const fetchProfileAction = {
   type: 'FETCH_PROFILE',
   [API]: {
@@ -19,19 +35,11 @@ const fetchLocationAction = {
   }
 }
 
-const fetchCategoriesAction = {
-  type:'FETCH_CATEGORIES',
-  [API]: {
-    endpoint: '/categories',
-  }
-}
-
-const fetchSkillsAction = (category = '') => {
+const fetchSkillsActionCreator = (location, category = '') => {
   return {
     type:'FETCH_SKILLS',
     [API]: {
-      endpoint: `/skills?location=CITY&category=${category}`,
-      location: true,
+      endpoint: `/skills?${location.body.city}=CITY&category=${category}`,
     }
   }
   
@@ -41,5 +49,5 @@ export {
   fetchProfileAction,
   fetchLocationAction,
   fetchCategoriesAction,
-  fetchSkillsAction
+  fetchSkillsActionCreator
 }

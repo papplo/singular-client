@@ -8,8 +8,6 @@ export default serverUrl => store => next => action => {
       body: JSON.stringify(action[API].body)
     }
     
-    if (action[API].location) action[API].endpoint = action[API].endpoint.replace('CITY', store.getState().location.body.city)
-    
     fetch(action[API].externalUrl || serverUrl+action[API].endpoint, options)
     .then(response => response.json().then(data => ({status: response.status, body: data})))
     .then(responseObject => {

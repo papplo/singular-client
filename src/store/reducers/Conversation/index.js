@@ -1,10 +1,10 @@
 const conversations = (state = {status: 'unloaded'}, action) => {
   switch (action.type) {
-    case 'FETCH_CONVERSATION':
+    case 'FETCH_CONVERSATIONS':
         return {status: 'loading'};
-    case 'FETCH_CONVERSATION_FAILURE':
+    case 'FETCH_CONVERSATIONS_FAILURE':
         return {status: 'failure'};
-    case 'FETCH_CONVERSATION_SUCCESS':
+    case 'FETCH_CONVERSATIONS_SUCCESS':
         return action.responseObject;
     default:
       return state;

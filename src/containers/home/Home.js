@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Home.css';
-import { fetchLocationAction, fetchCategoriesAction, fetchSkillsAction } from '../../store/actions/actions';
+import { fetchLocationAction, fetchCategoriesAction, fetchSkillsActionCreator } from '../../store/actions/actions';
 import { BulmaBoiler, TagCloud } from '../../components/'
 
 class Home extends Component {
@@ -37,7 +37,14 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getLocation: () => dispatch(fetchLocationAction),
   getCategories: () => dispatch(fetchCategoriesAction),
-  getSkills: () => dispatch(fetchSkillsAction()),
+  getSkills: (location) => dispatch(fetchSkillsActionCreator(location)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  ...ownProps,
+  ...stateProps,
+  ...dispatchProps,
+  getSkills: () => dispatchProps.getSkills(stateProps.location)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Home);

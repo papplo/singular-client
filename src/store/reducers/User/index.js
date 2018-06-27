@@ -37,8 +37,21 @@ const user = (state = {status: 'unloaded'}, action) => {
     }
 }
 
+// const asyncDataReducer = (actionName) => (state = {status: 'unloaded'}, action) => {
+//     switch (action.type) {
+//         case 'FETCH' + actionName:
+//             return {status: 'loading'};
+//         case 'FETCH' + actionName + '_FAILURE':
+//             return {status: 'failure'};
+//         case 'FETCH' + actionName + '_SUCCESS':
+//             return action.responseObject;
+//         default:
+//           return state;
+//       }
+// }
+
 export {
-    profile,
+    profile,//: asyncDataReducer('PROFILE'),
     updateProfile,
     user,
 }
