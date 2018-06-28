@@ -27,8 +27,8 @@ class Category extends Component {
   initialize = async () => {
     this.setState({initialize: true})
     const categoryName = await pathParser(this.props.location.pathname);
-    if (!categoryName.name) return;
-    this.setState({category: categoryName.name});
+    if (!categoryName.first) return;
+    this.setState({category: categoryName.first});
     const categoryID = await categoryId(this.props.categories.body, categoryName.name);
     this.props.genreSkills(this.props.userLocation, categoryID)
   }

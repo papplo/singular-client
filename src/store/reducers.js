@@ -6,5 +6,5 @@ import { profile, updateProfile, user } from './reducers/User';
 import { conversations, createConversation, acceptConversation, rejectConversation, createReview, createMessage} from './reducers/Conversation';
 
 export default combineReducers({
-  location, categories, skills, profile, genreSkills
+  location, categories, skills, profile, genreSkills, idSkill, user
 })
