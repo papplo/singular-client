@@ -76,8 +76,6 @@
 
 
 // Navbar navmenu on touch is-active
-
-
 .navbar-menu {
   &.is-active {
     display: block;
@@ -85,5 +83,36 @@
     width: 100vh;
   }
 }
+
+// Helpers!!!
+.is-paddingless{
+  &-bottom {
+    padding-bottom: 0 !important;
+  }
+  &-top {
+    padding-bottom: 0 !important;
+  }
+}
+
+.has-half-padding {
+  &-top{
+    padding-top: 1.5rem !important;
+  }
+  &-bottom{
+    padding-bottom: 1.5rem !important;
+  }
+}
+
+
+
+.has-stroke {
+  &-top {
+    border-bottom: 1px solid $grey-lighter;
+  }
+  &-bottom {
+    border-bottom: 1px solid $grey-lighter;
+  }
+}
+
 // Main styling with bulma
 @import 'bulma/bulma.sass';
