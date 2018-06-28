@@ -32,12 +32,32 @@ const fetchProfileActionCreator = (userToken) => ({
   }
 })
 
+const fetchUserActionCreator = (id) => ({
+  type: 'FETCH_USER',
+  [API]: {
+    headers: {
+      'Content-Type': 'Application/JSON',
+    },
+    endpoint: `/user/${id}`,
+  }
+})
+
 const fetchLocationAction = {
   type: 'FETCH_LOCATION',
   [API]: {
     externalUrl: config.geolookup_url,
   }
 }
+
+const fetchIdSkillActionCreator = (id) => ({
+  type:'ID_SKILL',
+    [API]: {
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      endpoint: `/skills/${id}`,
+    }
+})
 
 const fetchSkillsActionCreator = (location, category) => {
   if (category) {
@@ -62,5 +82,7 @@ export {
   fetchProfileActionCreator,
   fetchLocationAction,
   fetchCategoriesAction,
-  fetchSkillsActionCreator
+  fetchSkillsActionCreator,
+  fetchIdSkillActionCreator,
+  fetchUserActionCreator,
 }

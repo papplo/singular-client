@@ -7,7 +7,7 @@ export default serverUrl => store => next => action => {
       method: action[API].method || 'GET',
       body: JSON.stringify(action[API].body)
     }
-    
+    console.log(action);
     fetch(action[API].externalUrl || serverUrl+action[API].endpoint, options)
     .then(response => response.json().then(data => ({status: response.status, body: data})))
     .then(responseObject => {
