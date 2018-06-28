@@ -3,6 +3,24 @@
   position: absolute;
   width: 100vh; }
 
+.is-paddingless-bottom {
+  padding-bottom: 0 !important; }
+
+.is-paddingless-top {
+  padding-bottom: 0 !important; }
+
+.has-half-padding-top {
+  padding-top: 1.5rem !important; }
+
+.has-half-padding-bottom {
+  padding-bottom: 1.5rem !important; }
+
+.has-stroke-top {
+  border-bottom: 1px solid #dbdbdb; }
+
+.has-stroke-bottom {
+  border-bottom: 1px solid #dbdbdb; }
+
 /*! bulma.io v0.7.1 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {
