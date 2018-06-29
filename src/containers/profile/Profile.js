@@ -11,12 +11,6 @@ class Profile extends Component {
   componentDidMount() {
     this.initialize();
   }
-
-  componentDidUpdate() {
-    console.log('====================================');
-    console.log(this.props.user);
-    console.log('====================================');
-  }
   initialize = async () => {
     const userID = (await pathParser(this.props.location.pathname)).first;
     if (!userID) return;
