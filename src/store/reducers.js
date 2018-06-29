@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import location from './reducers/locationReducer';
+import token from './reducers/tokenReducer';
 import { 
   categories,
   skills,
@@ -19,5 +20,5 @@ import {
 } from './reducers/asyncDataReducer';
 
 export default combineReducers({
-  location, categories, skills, profile, genreSkills, idSkill, user
+  location, categories, skills, profile, genreSkills, idSkill, user, token
 })

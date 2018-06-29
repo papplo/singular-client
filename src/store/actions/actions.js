@@ -76,6 +76,11 @@ const fetchSkillsActionCreator = (location, category) => {
     
 };
 
+const saveUserTokenActionCreator = (userToken) => ({
+  type: 'SAVE_TOKEN',
+  token: userToken,
+})
+
 export {
   fetchProfileActionCreator,
   fetchLocationAction,
@@ -83,4 +88,5 @@ export {
   fetchSkillsActionCreator,
   fetchIdSkillActionCreator,
   fetchUserActionCreator,
+  saveUserTokenActionCreator
 }
