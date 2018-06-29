@@ -1,4 +1,5 @@
 export default async (path) => {
+  console.log(path);
   const params = {}
   const arr = path.split('/');
   params.root = arr[1];
