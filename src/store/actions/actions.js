@@ -13,7 +13,6 @@ const fetchConversationsActionCreator = (userToken) => ({
   [API]: {
     headers: {
       'Authorization': 'Bearer ' + userToken,
-      'Content-Type': 'Application/JSON',
     },
     endpoint: '/conversation',
   }
@@ -24,7 +23,6 @@ const fetchProfileActionCreator = (userToken) => ({
   [API]: {
     headers: {
       'Authorization': 'Bearer ' + userToken,
-      'Content-Type': 'Application/JSON',
     },
     endpoint: '/me',
   }
@@ -33,9 +31,6 @@ const fetchProfileActionCreator = (userToken) => ({
 const fetchUserActionCreator = (id) => ({
   type: 'FETCH_USER',
   [API]: {
-    headers: {
-      'Content-Type': 'Application/JSON',
-    },
     endpoint: `/user/${id}`,
   }
 })
@@ -49,12 +44,9 @@ const fetchLocationAction = {
 
 const fetchIdSkillActionCreator = (id) => ({
   type:'ID_SKILL',
-    [API]: {
-      headers: {
-        'Content-Type': 'Application/JSON',
-      },
-      endpoint: `/skills/${id}`,
-    }
+  [API]: {
+    endpoint: `/skills/${id}`,
+  }
 })
 
 const fetchSkillsActionCreator = (location, category) => {
@@ -81,6 +73,19 @@ const saveUserTokenActionCreator = (userToken) => ({
   token: userToken,
 })
 
+const updateProfileActionCreator = (me, userToken) => ({
+  type: 'UPDATE_PROFILE',
+  [API]: {
+    endpoint: `/me`,
+    methdod: 'PUT',
+    headers: {
+      'Content-Type': 'Application/JSON',
+      'Authorization': 'Bearer ' + userToken,
+    },
+    body: me,
+  }
+})
+
 export {
   fetchProfileActionCreator,
   fetchLocationAction,
@@ -88,5 +93,6 @@ export {
   fetchSkillsActionCreator,
   fetchIdSkillActionCreator,
   fetchUserActionCreator,
-  saveUserTokenActionCreator
+  saveUserTokenActionCreator,
+  updateProfileActionCreator
 }
