@@ -27,9 +27,10 @@ class Category extends Component {
   initialize = async () => {
     this.setState({initialize: true})
     const categoryName = await pathParser(this.props.location.pathname);
+    console.log('category', categoryName);
     if (!categoryName.first) return;
     this.setState({category: categoryName.first});
-    const categoryID = await categoryId(this.props.categories.body, categoryName.name);
+    const categoryID = await categoryId(this.props.categories.body, categoryName.first);
     this.props.genreSkills(this.props.userLocation, categoryID)
   }
 
@@ -56,6 +57,7 @@ class Category extends Component {
   }
 
   render () {
+    console.log('skills: ', this.props.skills);
     return (
       <div>
         <section className="section is-center has-stroke-bottom has-half-padding-bottom">

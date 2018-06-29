@@ -29,6 +29,7 @@ class SkillProfile extends Component {
     console.log('next idskill');
     this.props.idSkill(skillId.first);
   }
+  
   render () {
     return (
       <div>
@@ -67,7 +68,9 @@ class SkillProfile extends Component {
 
 const mapStateToProps = (state) => ({
   skill: state.idSkill,
-  user: state.user
+  user: state.user,
+  skills: state.genreSkill
+
 });
 const mapDispatchToProps = (dispatch) => ({
   idSkill: (id) => dispatch(fetchIdSkillActionCreator(id)),
