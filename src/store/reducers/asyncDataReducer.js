@@ -1,11 +1,13 @@
 const asyncDataReducer = (actionName) => (state = {status: 'unloaded'}, action) => {
-  switch (action.type) {
-      case actionName:
-          return {status: 'loading'};
-      case actionName + '_FAILURE':
-          return {status: 'failure'};
-      case actionName + '_SUCCESS':
-          return action.responseObject;
+    switch (action.type) {
+        case actionName:
+            return {status: 'loading'};
+        case actionName + '_FAILURE':
+            return {status: 'failure'};
+        case actionName + '_SUCCESS':
+            return action.responseObject;
+        case actionName + '_CLEAR':
+            return {status: 'unloaded'};
       default:
         return state;
     }

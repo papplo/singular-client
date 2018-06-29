@@ -17,6 +17,11 @@ class SkillProfile extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.clear('ID_SKILL_CLEAR');
+    this.props.clear('FETCH_USER_CLEAR');
+  }
+
   initialize = async () => {
     const skillId = (await pathParser(this.props.location.pathname)).first;
     if (!skillId) return;
@@ -69,6 +74,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   idSkill: (id) => dispatch(fetchIdSkillActionCreator(id)),
   fetchUser: (id) => dispatch(fetchUserActionCreator(id)),
+  clear: (actionType) => dispatch({type: actionType})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SkillProfile);
