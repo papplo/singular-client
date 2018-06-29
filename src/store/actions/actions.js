@@ -1,7 +1,6 @@
 import { API } from '../../middleware/apiMiddleware';
 import config from '../../config/config';
 
-//CATEGORIES
 const fetchCategoriesAction = {
   type:'FETCH_CATEGORIES',
   [API]: {
@@ -9,7 +8,6 @@ const fetchCategoriesAction = {
   }
 }
 
-//CONVERSATIONS
 const fetchConversationsActionCreator = (userToken) => ({
   type:'FETCH_CONVERSATIONS',
   [API]: {
