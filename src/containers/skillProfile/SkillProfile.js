@@ -13,7 +13,7 @@ class SkillProfile extends Component {
 
   componentDidUpdate() {
     if (this.props.skill.status === 200 && this.props.user.status === 'unloaded') {
-      this.props.fetchUser(this.props.skill.body.creator_id)
+      this.props.fetchUser(this.props.skill.body.fk_user_id)
     }
   }
 
@@ -46,6 +46,7 @@ class SkillProfile extends Component {
             </div>
 
             <div class="content">
+              {this.props.user.status}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Phasellus nec iaculis mauris. <a>@bulmaio</a>.
               <a href="#">#css</a> <a href="#">#responsive</a>
