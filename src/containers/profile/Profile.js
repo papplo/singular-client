@@ -13,13 +13,13 @@ class Profile extends Component {
   }
   initialize = async () => {
     const userID = (await pathParser(this.props.location.pathname)).first;
+    if (!userID) return;
     this.props.fetchUser(userID);
   }
   render () {
     return (
       <div>
         <p>Profile Page</p>
-        <p>{this.props.user.status}</p>
       </div>
     )
   }

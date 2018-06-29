@@ -8,28 +8,21 @@ import { fetchIdSkillActionCreator, fetchUserActionCreator } from '../../store/a
 class SkillProfile extends Component {
 
   componentWillMount() {
-    console.log('component mounting');
     this.initialize()
   }
 
   componentDidUpdate() {
-    console.log('component updating');
-    console.log('skill: ', this.props.skill)
-    console.log('user: ', this.props.user)
     if (this.props.skill.status === 200 && this.props.user.status === 'unloaded') {
       this.props.fetchUser(this.props.skill.body.creator_id)
     }
-
-    
   }
 
   initialize = async () => {
-    const skillId = await pathParser(this.props.location.pathname);
-    if (!skillId.first) return;
-    console.log('next idskill');
-    this.props.idSkill(skillId.first);
+    const skillId = (await pathParser(this.props.location.pathname)).first;
+    if (!skillId) return;
+    this.props.idSkill(skillId);
   }
-  
+
   render () {
     return (
       <div>
