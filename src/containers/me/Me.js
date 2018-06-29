@@ -23,6 +23,7 @@ class Me extends Component {
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
+  token: state.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({});
