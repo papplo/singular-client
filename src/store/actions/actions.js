@@ -12,7 +12,7 @@ const fetchConversationsActionCreator = (userToken) => ({
   type:'FETCH_CONVERSATIONS',
   [API]: {
     headers: {
-      'Authentication': userToken,
+      'Authorization': 'Bearer ' + userToken,
       'Content-Type': 'Application/JSON',
     },
     endpoint: '/conversation',
@@ -23,7 +23,7 @@ const fetchProfileActionCreator = (userToken) => ({
   type: 'FETCH_PROFILE',
   [API]: {
     headers: {
-      'Authentication': userToken,
+      'Authorization': 'Bearer ' + userToken,
       'Content-Type': 'Application/JSON',
     },
     endpoint: '/me',
@@ -62,7 +62,7 @@ const fetchSkillsActionCreator = (location, category) => {
     return {
       type:'FETCH_SKILLS_CATEGORY',
       [API]: {
-        endpoint: `/skills?location=${location.body.city}&category=${category}`,
+        endpoint: `/skills?location=${location.body.city}&category_id=${category}`,
       }
     }
   } else {
