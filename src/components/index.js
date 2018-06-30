@@ -9,3 +9,4 @@ export { default as Hero } from './hero/Hero';
 export { default as TagCloud } from './elements/TagCloud';
 export { default as ActivityList } from './skills/ActivityList';
 export { default as User } from './user/User';
+export { default as Reviews } from './reviews/Reviews';

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './SkillProfile.css';
 import pathParser from '../../services/pathparser';
 import { User } from '../../components/'
+import { Reviews } from '../../components/'
 import { fetchIdSkillActionCreator, fetchUserActionCreator } from '../../store/actions/actions';
 
 //PATH: root/skill_id
@@ -38,6 +39,12 @@ class SkillProfile extends Component {
     return (
       <div className="container skill-profile">
         <User user={this.props.user}></User>
+      <br/>
+
+        <p className="subtitle has-text-centered is-size-12 ">
+          What other people say...
+        </p>
+        <Reviews skill={this.props.skill}></Reviews>
       </div>
     )
   }
