@@ -90,7 +90,7 @@ const createSkillActionCreator = (skill, userToken) => ({
   type: 'CREATE_SKILL',
   [API]: {
     endpoint: `/skills`,
-    methdod: 'POST',
+    method: 'POST',
     headers: {
       'Content-Type': 'Application/JSON',
       'Authorization': 'Bearer ' + userToken,
