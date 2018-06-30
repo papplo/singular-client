@@ -86,6 +86,19 @@ const updateProfileActionCreator = (me, userToken) => ({
   }
 })
 
+const createSkillActionCreator = (skill, userToken) => ({
+  type: 'CREATE_SKILL',
+  [API]: {
+    endpoint: `/skills`,
+    methdod: 'POST',
+    headers: {
+      'Content-Type': 'Application/JSON',
+      'Authorization': 'Bearer ' + userToken,
+    },
+    body: skill,
+  }
+})
+
 export {
   fetchProfileActionCreator,
   fetchLocationAction,
@@ -94,5 +107,6 @@ export {
   fetchIdSkillActionCreator,
   fetchUserActionCreator,
   saveUserTokenActionCreator,
-  updateProfileActionCreator
+  updateProfileActionCreator,
+  createSkillActionCreator
 }
