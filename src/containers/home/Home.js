@@ -5,6 +5,11 @@ import { Hero, BulmaBoiler, TagCloud, ActivityList } from '../../components/'
 import './Home.css';
 
 class Home extends Component {
+
+  componentWillUnmount() {
+    this.props.clear('FETCH_SKILLS_CLEAR');
+  }
+
   render () {
     return (
       <div>
@@ -30,4 +35,8 @@ const mapStateToProps = (state) => ({
   skills: state.skills
 });
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => ({
+  clear: (actionType) => dispatch({type: actionType})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
