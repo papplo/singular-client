@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import config from '../../config/config';
 import pathParser from '../../services/pathparser';
-import { CardMedia, AsyncComponent } from '../../components/';
+import { User, CardMedia, AsyncComponent } from '../../components/';
 import { fetchIdSkillActionCreator, fetchUserActionCreator } from '../../store/actions/actions';
 
 //PATH: root/skill_id
@@ -34,6 +34,7 @@ class SkillProfile extends Component {
 
     return (
       <div className="container">
+        <User user={this.props.user}></User>
         {AsyncComponent(this.props.skill.status, this.props.skill,
           <CardMedia
           skill={this.props.skill}

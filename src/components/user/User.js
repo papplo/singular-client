@@ -22,7 +22,7 @@ export default class User extends AsyncList {
               <div className="card-content">
                 <div className="media">
                   <div className="media-left">
-                    <figure className="image is-256x256 ">
+                    <figure className="image is-256x256">
                       <img className="is-rounded" src={user.img_url} alt="Placeholder image"/>
                     </figure>
                   </div>

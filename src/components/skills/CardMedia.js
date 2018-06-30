@@ -13,11 +13,11 @@ export default (props) => {
   };
 
   return (
-    <div className="card">
+    <div className="card" style={divStyle}>
       <div className="card-image">
 
       </div>
-      <div className="card-content" style={divStyle}>
+      <div className="card-content" >
         <div className="media">
           <div className="media-content">
             <p className="title is-4">

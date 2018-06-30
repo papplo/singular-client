@@ -10,4 +10,4 @@ export { default as Hero } from './hero/Hero';
 export { default as TagCloud } from './elements/TagCloud';
 export { default as ActivityList } from './skills/ActivityList';
 export { default as CardMedia } from './skills/CardMedia';
-
+export { default as User } from './user/User';
