@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AsyncList from '../AsyncList';
 import { Link } from 'react-router-dom';
 import './User.css';
+import Moment from 'react-moment';
 
 export default class User extends AsyncList {
 
@@ -27,7 +28,7 @@ export default class User extends AsyncList {
                   </div>
                   <div className="media-content ">
                     <p className="title is-4">{user.name + ' ' + user.surname}</p>
-                    <p className="subtitle is-6">{user.current_location}</p>
+                    <p className="subtitle is-6"><Moment fromNow ago >{user.date_of_birth}</Moment>{', '}{user.current_location}</p>
                     <br/>
                     <p className="subtitle is-6">{user.description}</p>
                   </div>
