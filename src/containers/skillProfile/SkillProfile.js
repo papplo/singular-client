@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route, Redirect } from "react-router-dom";
 
 import config from '../../config/config';
 import pathParser from '../../services/pathparser';
 import { CardMedia, AsyncComponent, Reviews, User  } from '../../components/';
-import { fetchIdSkillActionCreator, fetchUserActionCreator } from '../../store/actions/actions';
+import { fetchIdSkillActionCreator, fetchUserActionCreator, createConversationActionCreator } from '../../store/actions/actions';
 
 //PATH: root/skill_id
 class SkillProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: '',
+      redirect: false
+    };
+  }
 
   componentWillMount() {
     this.initialize()
@@ -30,8 +38,27 @@ class SkillProfile extends Component {
     this.props.idSkill(skillId);
   }
 
-  render () {
+  handleChange = (event) => {
+  this.setState({message: event.target.value});
+}
 
+  handleSubmit = (event) => {
+    if(this.props.profile.status === 200) {
+      event.preventDefault();
+      const newMessage = {
+      message: this.state.message,
+      skillId: this.props.skill.body.pk_skill_id,
+      userId: this.props.profile.body.pk_user_id
+      }
+      this.props.createConversation(newMessage);
+    } else {
+      this.setState({ redirect: (
+        <Redirect to='/me'></Redirect>
+      )})
+    }
+}
+
+  render () {
     return (
       <div className="container">
         <div className="section has-half-padding">
@@ -63,6 +90,14 @@ class SkillProfile extends Component {
         </p>
         <Reviews elem={this.props.skill}/>
       </div>
+      <form onSubmit={this.handleSubmit} className = 'popup_inner'>
+      <label>
+        Your Message:
+        <input name="message" type="text" value={this.state.message} onChange={this.handleChange} />
+      </label>
+      <input type="submit" value="REQUEST A MEET"/>
+    </form>
+    <div>{this.state.redirect} </div>
     </div>
 
     )
@@ -72,13 +107,16 @@ class SkillProfile extends Component {
 const mapStateToProps = (state) => ({
   skill: state.idSkill,
   user: state.user,
-  skills: state.genreSkill
+  skills: state.genreSkill,
+  profile: state.profile
 
 });
 const mapDispatchToProps = (dispatch) => ({
   idSkill: (id) => dispatch(fetchIdSkillActionCreator(id)),
   fetchUser: (id) => dispatch(fetchUserActionCreator(id)),
-  clear: (actionType) => dispatch({type: actionType})
+  clear: (actionType) => dispatch({type: actionType}),
+  createConversation: (newMessage) => dispatch(createConversationActionCreator(newMessage))
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SkillProfile);

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import location from './reducers/locationReducer';
 import token from './reducers/tokenReducer';
-import { 
+import {
   categories,
   skills,
   createSkill,
@@ -19,5 +19,8 @@ import {
 } from './reducers/asyncDataReducer';
 
 export default combineReducers({
+
+  location, categories, skills, profile, genreSkills, idSkill, user, token, updateProfile, createSkill, conversations, createConversation,
   location, categories, skills, profile, genreSkills, idSkill, user, token, updateProfile, createSkill, acceptOrRejectConversation,
+
 })

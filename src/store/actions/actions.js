@@ -65,7 +65,7 @@ const fetchSkillsActionCreator = (location, category) => {
       }
     }
   }
-    
+
 };
 
 const saveUserTokenActionCreator = (userToken) => ({
@@ -99,6 +99,26 @@ const createSkillActionCreator = (skill, userToken) => ({
   }
 })
 
+
+const createConversationActionCreator = (newMessage, userToken) => ({
+  type: 'CREATE_CONVERSATION',
+  [API]: {
+    endpoint: `/conversation`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'Application/JSON',
+      'Authorization': 'Bearer ' + userToken,
+    },
+    body: {
+      fk_sender_user_id: newMessage.userId,
+      fk_skill_id: newMessage.skillId,
+      request_message: newMessage.message,
+    }
+
+  }
+})
+
+
 const acceptOrRejectConversationActionCreator = (id, action, userToken) => ({
   type: 'ACCEPT_OR_REJECT_CONVERSATION',
   [API]: {
@@ -112,6 +132,7 @@ const acceptOrRejectConversationActionCreator = (id, action, userToken) => ({
 })
 
 
+
 export {
   fetchProfileActionCreator,
   fetchLocationAction,
@@ -122,5 +143,7 @@ export {
   saveUserTokenActionCreator,
   updateProfileActionCreator,
   createSkillActionCreator,
+  createConversationActionCreator,
   acceptOrRejectConversationActionCreator
+
 }
