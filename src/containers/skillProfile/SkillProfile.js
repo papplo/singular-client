@@ -35,11 +35,13 @@ class SkillProfile extends Component {
     return (
       <div className="container">
         <User user={this.props.user}></User>
-        {AsyncComponent(this.props.skill.status, this.props.skill,
-          <CardMedia
-          skill={this.props.skill}
-          user={this.props.user}/>
-        )}
+        <div className="section">
+          {AsyncComponent(this.props.skill.status, this.props.skill,
+            <CardMedia
+            skill={this.props.skill}
+            user={this.props.user}/>
+          )}
+        </div>
       </div>
     )
   }
