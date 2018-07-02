@@ -17,6 +17,7 @@ class SkillProfile extends Component {
     };
   }
 
+
   componentWillMount() {
     this.initialize()
   }

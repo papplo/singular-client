@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { ConversationCard } from '../../components/conversation/ConversationCard'
-import { acceptOrRejectConversationActionCreator } from '../../store/actions/actions';
+import Chat from './../chat/Chat';
+import { acceptOrRejectConversationActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
 import './Inbox.css';
 
 
@@ -16,38 +17,52 @@ class Inbox extends Component {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.reRenderProfile.status === 200) {
+      this.props.clear('ACCEPT_OR_REJECT_CONVERSATION_CLEAR')
+      this.props.fetchProfile(this.props.token)
+      
+    }
+  }
+
   changeButtonValue = (value) => {
     this.setState({buttonValue: value});
   }
 
   renderOrRedirect = () => {
-    if (this.props.profile.status !== 200) return <Redirect to='/login' />
+    if (this.props.token === 0) return <Redirect to='/login' />
     else {
-      return (
-        <div className='inboxContainer'>
-          <div className='buttons'>
-            <button onClick={() => this.changeButtonValue('chats')} className='chats'>Chats</button>
-            <button onClick={() => this.changeButtonValue('requests')} className='requests'>Requests</button>
+      if (this.props.renderChat.render) {
+        return <Chat></Chat>
+      } else {
+        return (
+          <div className='inboxContainer'>
+            <div className='buttons'>
+              <button onClick={() => this.changeButtonValue('chats')} className='chats'>Chats</button>
+              <button onClick={() => this.changeButtonValue('requests')} className='requests'>Requests</button>
+            </div>
+            <div className='conversationContainer'>
+              {this.renderConversations()}
+            </div>
           </div>
-          <div className='conversationContainer'>
-            {this.renderConversations()}
-          </div>
-        </div>
-      )
+        )
+      }
     }
   }
 
+
   renderConversations = () => {
+    if (this.props.profile.status !== 200) return null;
     const conversationsToRender = []
     const conversationsStartedByMe = this.props.profile.body.conversationsStartedByMe;
     const conversationsStartedByOthers = this.props.profile.body.conversationsStartedByOthers;
 
     if (this.state.buttonValue === 'chats') {
       for (let i = 0; i < conversationsStartedByOthers.length; i++) {
-        if (conversationsStartedByOthers[i].approved === 1) conversationsToRender.push(ConversationCard(conversationsStartedByOthers[i], 2))
+        if (conversationsStartedByOthers[i].approved === 1) conversationsToRender.push(ConversationCard(conversationsStartedByOthers[i], 2, this.props.chatToggle))
       }
       for (let i = 0; i < conversationsStartedByMe.length; i++) {
-        if (conversationsStartedByMe[i].approved === 1) conversationsToRender.push(ConversationCard(conversationsStartedByMe[i], 2))
+        if (conversationsStartedByMe[i].approved === 1) conversationsToRender.push(ConversationCard(conversationsStartedByMe[i], 2, this.props.chatToggle))
       }
     } else {
       for (let i = 0; i < conversationsStartedByOthers.length; i++) {
@@ -68,8 +83,14 @@ class Inbox extends Component {
 const mapStateToProps = (state) => ({
   profile: state.profile,
   token: state.token,
+  renderChat: state.chatToggle,
+  reRenderProfile: state.acceptOrRejectConversation,
+
 });
 const mapDispatchToProps = (dispatch) => ({
   putConversationStatus: (id, action, userToken) => dispatch(acceptOrRejectConversationActionCreator(id, action, userToken)),
+  chatToggle: (conversationID) => dispatch({type: 'CHAT_TOGGLE', conversationID: conversationID, render: true}),
+  fetchProfile: (userToken) => dispatch(fetchProfileActionCreator(userToken)),
+  clear: (actionType) => dispatch({type: actionType})
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
