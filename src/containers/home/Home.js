@@ -15,12 +15,13 @@ class Home extends Component {
       <div>
         <Hero
           color="dark"
-          title="Learn something exiting today in "
+          title="Learn something exciting today in "
           subTitle=""
           userLocation={this.props.location}>
           <TagCloud categories={this.props.categories}/>
-          <p className="is-size-6 has-text-centered">Pick a Topic or
-            <Link to="/discover-categories"> explore all</Link>
+          <p className="is-size-6 has-text-centered">
+            Choose a Topic or
+            <Link to="/discover-categories"> explore all skills </Link>
           </p>
         </Hero>
         <ActivityList skills={this.props.skills}/>
