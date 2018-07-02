@@ -7,7 +7,6 @@ import Moment from 'react-moment';
 export default class User extends AsyncList {
 
   render() {
-    console.log(this.props.user.body);
     return (
 
       <div >
