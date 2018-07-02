@@ -24,7 +24,7 @@ class Chat extends Component {
 
   render () {
     return (
-      <div>I'm the chat
+      <div>Im the chat
         <button onClick={this.props.chatToggle}>close</button>
       </div>
     )
