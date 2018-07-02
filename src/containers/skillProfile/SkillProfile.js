@@ -33,16 +33,29 @@ class SkillProfile extends Component {
   render () {
 
     return (
-      <div className="container skill-profile">
-        <User user={this.props.user}/>
-
-
-      <div className="container skill-card">
-        {AsyncComponent(this.props.skill.status, this.props.skill,
-          <CardMedia
-          skill={this.props.skill}
-          user={this.props.user}/>
-        )}
+      <div className="container">
+        <div className="section has-half-padding">
+          <User user={this.props.user}></User>
+        </div>
+        <div className="section has-half-padding-top">
+          {AsyncComponent(this.props.skill.status, this.props.skill,
+            <CardMedia
+            skill={this.props.skill}
+            user={this.props.user}/>
+          )}
+          <div class="field is-grouped is-centered has-half-padding-top">
+            <p class="control">
+              <a class="button is-round is-medium is-outlined is-primary">
+                Learn more
+              </a>
+            </p>
+            <p class="control">
+              <a class="button is-round is-medium is-primary">
+                Request now
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
       <div className="container skill-reviews">
         <p className="subtitle has-text-centered is-size-12 ">

@@ -11,27 +11,25 @@ export default class ActivityList extends AsyncList {
           this.props.skills.status,
           this.props.skills.body,
           (elem) => (
-            <Link key={elem.pk_skill_id} to={'/skill-profile/' + elem.pk_skill_id}>
-            <article className="media" key={elem.pk_skill_id}>
+            <article className="media skills-list" key={elem.pk_skill_id}>
             <figure className="media-left">
-              <p className="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
+              <p className="image is-64x64 ">
+                <img className="is-circular" src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image" />
               </p>
             </figure>
             <div className="media-content">
               <div className="content">
-                <p>
-                  <strong>{elem.title}</strong>
-                  <br />
-                  By {elem.creator_name}
+                <p className="title is-5 has-text-weight-normal">
+                  <Link className="custom" key={elem.pk_skill_id} to={'/skill-profile/' + elem.pk_skill_id}>
+                  <span className="is-sans has-text-grey">{elem.title}</span><br />
+                  <span className="subtitle is-6 is-serif has-text-grey">By {elem.creator_name}</span>
+                </Link>
                 </p>
+
               </div>
             </div>
-            <div className="media-right">
-              <small>Learn more</small>
-            </div>
+
           </article>
-          </Link>
           )
         )}
       </div>
