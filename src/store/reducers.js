@@ -12,13 +12,15 @@ import {
   updateProfile,
   user,
   conversations,
-  createConversation,
-  acceptConversation,
+  acceptOrRejectConversation,
   rejectConversation,
   createReview,
   createMessage,
 } from './reducers/asyncDataReducer';
 
 export default combineReducers({
+
   location, categories, skills, profile, genreSkills, idSkill, user, token, updateProfile, createSkill, conversations, createConversation,
+  location, categories, skills, profile, genreSkills, idSkill, user, token, updateProfile, createSkill, acceptOrRejectConversation,
+
 })

@@ -99,6 +99,7 @@ const createSkillActionCreator = (skill, userToken) => ({
   }
 })
 
+
 const createConversationActionCreator = (newMessage, userToken) => ({
   type: 'CREATE_CONVERSATION',
   [API]: {
@@ -117,6 +118,21 @@ const createConversationActionCreator = (newMessage, userToken) => ({
   }
 })
 
+
+const acceptOrRejectConversationActionCreator = (id, action, userToken) => ({
+  type: 'ACCEPT_OR_REJECT_CONVERSATION',
+  [API]: {
+    endpoint: `/conversation/${id}/${action}`,
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'Application/JSON',
+      'Authorization': 'Bearer ' + userToken,
+    }
+  }
+})
+
+
+
 export {
   fetchProfileActionCreator,
   fetchLocationAction,
@@ -128,4 +144,6 @@ export {
   updateProfileActionCreator,
   createSkillActionCreator,
   createConversationActionCreator,
+  acceptOrRejectConversationActionCreator
+
 }
