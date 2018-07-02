@@ -29,6 +29,7 @@ export default class Navbar extends React.Component {
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
           </span>
         </div>
 
@@ -37,6 +38,7 @@ export default class Navbar extends React.Component {
             <Link className="navbar-item" to="/me">Me</Link>
             <Link className="navbar-item" to="/discover-categories">Topics</Link>
             <Link className="navbar-item" to="/login">Login</Link>
+            <Link className="navbar-item" to="/inbox">Inbox</Link>
           </div>
         </div>
       </nav>
