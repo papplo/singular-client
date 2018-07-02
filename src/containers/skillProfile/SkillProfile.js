@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './SkillProfile.css';
+
+import config from '../../config/config';
 import pathParser from '../../services/pathparser';
-import { User } from '../../components/'
-import { Reviews } from '../../components/'
+import { CardMedia, AsyncComponent, Reviews, User  } from '../../components/';
 import { fetchIdSkillActionCreator, fetchUserActionCreator } from '../../store/actions/actions';
 
 //PATH: root/skill_id
@@ -30,22 +30,27 @@ class SkillProfile extends Component {
     this.props.idSkill(skillId);
   }
 
-  renderImage = () => {
-    if (this.props.skill.status === 200) return <img src={this.props.skill.body.img_url} alt="Placeholder image"/>
-    else return  <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image"/>
-  }
-
   render () {
+
     return (
       <div className="container skill-profile">
-        <User user={this.props.user}></User>
-      <br/>
+        <User user={this.props.user}/>
+      </div>
 
+      <div className="container skill-card">
+        {AsyncComponent(this.props.skill.status, this.props.skill,
+          <CardMedia
+          skill={this.props.skill}
+          user={this.props.user}/>
+        )}
+      </div>
+      <div className="container skill-reviews">
         <p className="subtitle has-text-centered is-size-12 ">
           What other people say...
         </p>
-        <Reviews skill={this.props.skill}></Reviews>
+        <Reviews skill={this.props.skill}/>
       </div>
+
     )
   }
 }
