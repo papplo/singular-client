@@ -12,6 +12,11 @@ class Profile extends Component {
   componentDidMount() {
     this.initialize();
   }
+
+  componentWillUnmount() {
+    this.props.clear('FETCH_USER_CLEAR');
+  }
+
   initialize = async () => {
     const userID = (await pathParser(this.props.location.pathname)).first;
     if (!userID) return;
@@ -38,5 +43,6 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: (id) => dispatch(fetchUserActionCreator(id)),
+  clear: (actionType) => dispatch({type: actionType}),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

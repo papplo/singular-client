@@ -111,6 +111,18 @@ const acceptOrRejectConversationActionCreator = (id, action, userToken) => ({
   }
 })
 
+const fetchConversationActionCreator = (conversationID, userToken) => ({
+  type: 'FETCH_MESSAGES',
+  [API]: {
+    endpoint: `/conversations/${conversationID}`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'Application/JSON',
+      'Authorization': 'Bearer ' + userToken,
+    }
+  }
+})
+
 
 export {
   fetchProfileActionCreator,
@@ -122,5 +134,6 @@ export {
   saveUserTokenActionCreator,
   updateProfileActionCreator,
   createSkillActionCreator,
-  acceptOrRejectConversationActionCreator
+  acceptOrRejectConversationActionCreator,
+  fetchConversationActionCreator
 }

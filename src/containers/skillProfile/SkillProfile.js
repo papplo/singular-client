@@ -9,6 +9,7 @@ import { fetchIdSkillActionCreator, fetchUserActionCreator } from '../../store/a
 //PATH: root/skill_id
 class SkillProfile extends Component {
 
+
   componentWillMount() {
     this.initialize()
   }
