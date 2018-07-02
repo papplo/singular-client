@@ -60,10 +60,9 @@ class Category extends Component {
     console.log('skills: ', this.props.skills);
     return (
       <div>
-        <section className="section is-center has-stroke-bottom has-half-padding-bottom">
-          <div className="container">
-            <p> Put your dance shoes on!</p>
-            <h1 className="title is-capitalized">
+        <section className="section is-center has-stroke-bottom has-half-padding-top has-background-dark	has-text-warning">
+          <div className="container category-title">
+            <h1 className="title is-capitalized has-text-warning is-2">
               {this.state.category}
             </h1>
           </div>

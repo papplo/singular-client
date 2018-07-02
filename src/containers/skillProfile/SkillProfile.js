@@ -83,7 +83,6 @@ class SkillProfile extends Component {
             </p>
           </div>
         </div>
-      </div>
       <div className="container skill-reviews">
         <p className="subtitle has-text-centered is-size-12 ">
           What other people say...
