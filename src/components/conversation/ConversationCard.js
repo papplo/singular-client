@@ -9,10 +9,6 @@ const ConversationCard = (props, buttons, putConversationStatus, token) => {
     if (buttons === 1) return [<button onClick={() => putConversationStatus(props.pk_conversation_id, 'accept', token)}>Approve</button>, <button  onClick={() => putConversationStatus(props.pk_conversation_id, 'reject', token)}>Ignore</button>]
     if (buttons === 2) return <button>Chat</button>
   }
-  
-  const renderConversationCardLeftCol = () => {
-    
-  }
 
   return (
     <div className='conversationCard'>
@@ -35,7 +31,7 @@ const ConversationCard = (props, buttons, putConversationStatus, token) => {
           <p>Topic: {props.skill_title}</p>
         </div>
         <div className='conversationCardRightColMessage'>
-          <p>Hello rosita, i like your moves, dance moves. Would you consider teaching me sometime this week. In return i'd be happy to teach you how to lockpick your neighbours lockbox. Deal?</p>
+          <p>Hello rosita, i like your moves, dance moves. Would you consider teaching me sometime this week. In exchange i'd be happy to teach you how to lockpick your neighbours lockbox. Deal?</p>
         </div>
         <div className='conversationCardRightColButtons'>
           {renderButtons()}
