@@ -11,28 +11,25 @@ export default (props) => {
   };
 
   const bgFade = {
-      backgroundImage: 'linear-gradient(to bottom right,rgba(0,0,0,0),rgba(0,0,0,.7))',
+      backgroundImage: 'linear-gradient(to bottom right,rgba(0,0,0,0),rgba(0,0,0,.9))',
   }
 
 
   return (
-    <div className="card" style={bgImage}>
-      <div className="card-image">
-
-      </div>
+    <div className="card skill is-round is-clipped	" style={bgImage}>
       <div className="card-content" style={bgFade} >
         <div className="media">
           <div className="media-content">
-            <p className="title is-2 has-text-white">
+            <p className="title is-3 has-text-white">
               {props.skill.status === 200 && props.skill.body.title}</p>
-            <p className="subtitle is-6 has-text-white">{props.user.status === 200 && 'by ' + props.user.body.name +' '+ props.user.body.surname}</p>
+            <p className="subtitle is-6 has-text-grey-light is-serif">{props.user.status === 200 && 'by ' + props.user.body.name +' '+ props.user.body.surname}</p>
           </div>
         </div>
 
-        <div className="content is-hidden-touch" >
+        <div className="content is-hidden-mobile has-text-grey-lighter is-serif">
           {props.skill.status === 200 && props.skill.body.description}
           <br />
-          <time dateTime="2016-1-1">{props.skill.status === 200 && props.skill.body.created_at}</time>
+          <time dateTime="2016-1-1">{props.skill.status === 200 && props.skill.body.created_at.slice(0, 10)}</time>
         </div>
       </div>
     </div>
