@@ -8,9 +8,9 @@ export default class Reviews extends AsyncList {
   render() {
     return (
       <div >
-        {this.props.skill.body && this.renderAsyncList(
-          this.props.skill.status,
-          this.props.skill.body.reviews,
+        {this.props.elem.body && this.renderAsyncList(
+          this.props.elem.status,
+          this.props.elem.body.reviews,
           (review) => {
             return (
             <div className="card">

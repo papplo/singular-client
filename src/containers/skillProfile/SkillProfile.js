@@ -35,7 +35,7 @@ class SkillProfile extends Component {
     return (
       <div className="container skill-profile">
         <User user={this.props.user}/>
-      </div>
+
 
       <div className="container skill-card">
         {AsyncComponent(this.props.skill.status, this.props.skill,
@@ -48,8 +48,9 @@ class SkillProfile extends Component {
         <p className="subtitle has-text-centered is-size-12 ">
           What other people say...
         </p>
-        <Reviews skill={this.props.skill}/>
+        <Reviews elem={this.props.skill}/>
       </div>
+    </div>
 
     )
   }
