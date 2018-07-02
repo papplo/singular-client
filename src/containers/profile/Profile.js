@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import pathParser from '../../services/pathparser';
 import { fetchUserActionCreator } from '../../store/actions/actions';
+import {  Reviews, User  } from '../../components/';
 
 
 //PATH: root/user_id
@@ -19,8 +20,16 @@ class Profile extends Component {
   render () {
     return (
       <div>
-        <p>Profile Page</p>
+      <div className="container skill-profile">
+        <User user={this.props.user}/>
       </div>
+      <div className="container skill-reviews">
+        <p className="subtitle has-text-centered is-size-12 ">
+          What other people say...
+        </p>
+        <Reviews elem={this.props.user}/>
+      </div>
+    </div>
     )
   }
 }
