@@ -83,22 +83,24 @@ class SkillProfile extends Component {
             </p>
           </div>
         </div>
-      </div>
+
       <div className="container skill-reviews">
         <p className="subtitle has-text-centered is-size-12 ">
           What other people say...
         </p>
         <Reviews elem={this.props.skill}/>
       </div>
+      <div>
       <form onSubmit={this.handleSubmit} className = 'popup_inner'>
       <label>
         Your Message:
         <input name="message" type="text" value={this.state.message} onChange={this.handleChange} />
       </label>
-      <input type="submit" value="REQUEST A MEET"/>
+      <input class="button is-round is-medium is-primary" type="submit" value="REQUEST A MEET"/>
     </form>
     <div>{this.state.redirect} </div>
     </div>
+  </div>
 
     )
   }
