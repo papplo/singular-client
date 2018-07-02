@@ -27,14 +27,14 @@ export default class Navbar extends React.Component {
   showMe (){
     if(this.props.profile.status === 200){
         return (
-        <div className="avatar">
+        <Link className="navbar-item" to="/me">
         <div className="media center">
-          <figure className="image is-48x48">
+          <figure className="image is-24x24">
             <img className="is-circular" src={this.props.profile.body.img_url} alt="Placeholder image"/>
           </figure>
         </div>
-        <Link className="navbar-item" to="/me">Hello {this.props.profile.body.name}!</Link>
-        </div>
+        <p>Hello {this.props.profile.body.name}!</p>
+        </Link>
         )
       }
   }
