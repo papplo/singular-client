@@ -66,9 +66,6 @@ class Me extends Component {
   }
 
   render () {
-    console.log('====================================');
-    console.log(this.props.profile);
-    console.log('====================================');
     return (<div>{this.renderOrRedirect()}</div>)
   }
 }
