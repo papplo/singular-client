@@ -19,7 +19,7 @@ class Header extends Component {
 
   render () {
     return (
-      <Navbar />
+      <Navbar profile={this.props.profile}/>
     )
   }
 }
@@ -27,7 +27,8 @@ class Header extends Component {
 const mapStateToProps = (state) => ({
   location: state.location,
   categories: state.categories,
-  skills: state.skills
+  skills: state.skills,
+  profile: state.profile,
 });
 
 const mapDispatchToProps = (dispatch) => ({
