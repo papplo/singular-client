@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import pathParser from '../../services/pathparser';
 import { fetchUserActionCreator } from '../../store/actions/actions';
-import {  Reviews, User  } from '../../components/';
+import {  Reviews, User, ActivityCards  } from '../../components/';
 
 
 //PATH: root/user_id
@@ -17,22 +17,37 @@ class Profile extends Component {
     this.props.clear('FETCH_USER_CLEAR');
   }
 
+  componentWillUnmount() {
+    this.props.clear('ID_SKILL_CLEAR');
+    this.props.clear('FETCH_USER_CLEAR');
+  }
+
   initialize = async () => {
     const userID = (await pathParser(this.props.location.pathname)).first;
     if (!userID) return;
     this.props.fetchUser(userID);
   }
   render () {
+    console.log('here', this.props.skills.status);
     return (
-      <div>
-      <div className="container skill-profile">
-        <User user={this.props.user}/>
+      <div className="container user-profile">
+        <div className="section has-half-padding">
+          <User user={this.props.user}>
+            <p className="subtitle is-6 is-serif has-half-padding has-text-grey ">{this.props.user.status === 200 && this.props.user.body.description}</p>
+          </User>
+        </div>
+
+      <div className="section user-skills">
+        <ActivityCards
+          skill={this.props.user.body.skills}
+          user={this.props.user}/>
       </div>
-      <div className="container skill-reviews">
+
+      <div className="section user-reviews">
         <p className="subtitle has-text-centered is-size-12 ">
           What other people say...
         </p>
-        <Reviews elem={this.props.user}/>
+        <Reviews elem={this.props.user} />
       </div>
     </div>
     )
@@ -40,6 +55,7 @@ class Profile extends Component {
 }
 const mapStateToProps = (state) => ({
   user: state.user,
+  skills: state.skills,
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: (id) => dispatch(fetchUserActionCreator(id)),

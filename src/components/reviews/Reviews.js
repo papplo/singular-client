@@ -13,7 +13,7 @@ export default class Reviews extends AsyncList {
           this.props.elem.body.reviews,
           (review) => {
             return (
-            <div className="card">
+            <div className="card" key={review.pk_review_id}>
               <div className="card-content">
                 <div className="media">
                   <div className="media-left">
