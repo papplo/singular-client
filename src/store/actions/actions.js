@@ -77,7 +77,7 @@ const updateProfileActionCreator = (me, userToken) => ({
   type: 'UPDATE_PROFILE',
   [API]: {
     endpoint: `/me`,
-    methdod: 'PUT',
+    method: 'PUT',
     headers: {
       'Content-Type': 'Application/JSON',
       'Authorization': 'Bearer ' + userToken,
@@ -131,6 +131,33 @@ const acceptOrRejectConversationActionCreator = (id, action, userToken) => ({
   }
 })
 
+const fetchConversationActionCreator = (conversationID, userToken) => ({
+  type: 'FETCH_CONVERSATION',
+  [API]: {
+    endpoint: `/conversation/${conversationID}`,
+    method: 'GET',
+    headers: {
+      'Content-Type': 'Application/JSON',
+      'Authorization': 'Bearer ' + userToken,
+    }
+  }
+})
+
+const createMessageActionCreator = (message, conversationID, userToken) => ({
+  type: 'CREATE_MESSAGE',
+  [API]: {
+    endpoint: `/message/${conversationID}`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'Application/JSON',
+      'Authorization': 'Bearer ' + userToken,
+    },
+    body: {
+      message,
+    }
+  }
+})
+
 
 
 export {
@@ -143,7 +170,8 @@ export {
   saveUserTokenActionCreator,
   updateProfileActionCreator,
   createSkillActionCreator,
+  fetchConversationActionCreator,
   createConversationActionCreator,
-  acceptOrRejectConversationActionCreator
-
+  acceptOrRejectConversationActionCreator,
+  createMessageActionCreator
 }
