@@ -17,6 +17,7 @@ class SkillProfile extends Component {
     };
   }
 
+
   componentWillMount() {
     this.initialize()
   }
@@ -89,15 +90,17 @@ class SkillProfile extends Component {
         </p>
         <Reviews elem={this.props.skill}/>
       </div>
+      <div>
       <form onSubmit={this.handleSubmit} className = 'popup_inner'>
       <label>
         Your Message:
         <input name="message" type="text" value={this.state.message} onChange={this.handleChange} />
       </label>
-      <input type="submit" value="REQUEST A MEET"/>
+      <input class="button is-round is-medium is-primary" type="submit" value="REQUEST A MEET"/>
     </form>
     <div>{this.state.redirect} </div>
     </div>
+  </div>
 
     )
   }
