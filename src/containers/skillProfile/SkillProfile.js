@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from "react-router-dom";
-
 import config from '../../config/config';
 import pathParser from '../../services/pathparser';
+import ModalFx from '../../services/modalFx';
 import { CardMedia, AsyncComponent, Reviews, User  } from '../../components/';
 import { fetchIdSkillActionCreator, fetchUserActionCreator, createConversationActionCreator } from '../../store/actions/actions';
+
+import '../../style/modal-fx.css';
+
 
 //PATH: root/skill_id
 class SkillProfile extends Component {
@@ -13,12 +16,14 @@ class SkillProfile extends Component {
     super(props);
     this.state = {
       message: '',
-      redirect: false
+      redirect: false,
+      modalOpen: false,
     };
   }
 
   componentWillMount() {
-    this.initialize()
+    this.initialize();
+    // window.addEventListener("keyup", () => modalFx._keyHandling('a'));
   }
 
   componentDidUpdate() {
@@ -70,14 +75,14 @@ class SkillProfile extends Component {
             skill={this.props.skill}
             user={this.props.user}/>
           )}
-          <div class="field is-grouped is-centered has-half-padding-top">
-            <p class="control">
-              <a class="button is-round is-medium is-outlined is-primary">
+          <div className="field is-grouped is-centered has-half-padding-top">
+            <p className="control">
+              <a className="button is-round is-medium is-outlined is-primary">
                 Learn more
               </a>
             </p>
-            <p class="control">
-              <a class="button is-round is-medium is-primary">
+            <p className="control">
+              <a onClick={() => this.setState({modalOpen: true})} className="button is-round is-medium is-primary">
                 Request now
               </a>
             </p>
@@ -89,14 +94,35 @@ class SkillProfile extends Component {
         </p>
         <Reviews elem={this.props.skill}/>
       </div>
-      <form onSubmit={this.handleSubmit} className = 'popup_inner'>
-      <label>
-        Your Message:
-        <input name="message" type="text" value={this.state.message} onChange={this.handleChange} />
-      </label>
-      <input type="submit" value="REQUEST A MEET"/>
-    </form>
-    <div>{this.state.redirect} </div>
+
+      {AsyncComponent(this.props.skill.status, this.props.skill,
+        <ModalFx
+        onToggle={() => this.setState({modalOpen: !this.state.modalOpen})}
+        open={this.state.modalOpen}
+        content={this.props.skill}>
+
+          <form onSubmit={this.handleSubmit} className = 'popup_inner'>
+            <textarea className="textarea" placeholder="Send a message with some kind words and what you are interested in" rows="6"
+              value={this.state.message} onChange={this.handleChange} ></textarea>
+
+            <div className="field is-grouped is-centered has-half-padding-top">
+              <p className="control">
+                <a onClick={() => this.setState({modalOpen: false})}
+                  className="button is-round is-medium is-error">Cancel</a>
+              </p>
+              <p className="control">
+                <a className="button is-round is-medium is-primary"
+                  type="submit">Send Request</a>
+              </p>
+            </div>
+
+          </form>
+        <div>{this.state.redirect}</div>
+        </ModalFx>
+      )}
+
+
+
     </div>
 
     )
