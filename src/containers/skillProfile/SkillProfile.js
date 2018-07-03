@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, Link } from "react-router-dom";
 import config from '../../config/config';
 import pathParser from '../../services/pathparser';
 import ModalFx from '../../services/modalFx';
@@ -15,9 +15,10 @@ class SkillProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: '',
+      message: ' ',
       redirect: false,
       modalOpen: false,
+      sendRequest: false
     };
   }
 
@@ -57,12 +58,48 @@ class SkillProfile extends Component {
       userId: this.props.profile.body.pk_user_id
       }
       this.props.createConversation(newMessage);
+      this.setState({ sendRequest: true })
     } else {
       this.setState({ redirect: (
         <Redirect to='/me'></Redirect>
       )})
     }
 }
+
+  handleView = () => {
+    if(this.state.sendRequest === false) {
+      return (
+        <form className = 'popup_inner'>
+          <textarea className="textarea" placeholder="Send a message with some kind words and what you are interested in" rows="6"
+            value={this.state.message} onChange={this.handleChange} ></textarea>
+          <div className="field is-grouped is-centered has-half-padding-top">
+            <p className="control">
+              <a onClick={() => this.setState({modalOpen: false})}
+                className="button is-round is-medium is-error">Cancel</a>
+            </p>
+            <p className="control">
+              <a onClick={this.handleSubmit} className="button is-round is-medium is-primary"
+                type="submit">Send Request</a>
+            </p>
+          </div>
+        </form>
+      )
+    } else {
+      return (
+        <div>
+        <p className="title is-5 has-text-centered">Thank you for the request!</p>
+        <div className="field is-grouped is-centered has-half-padding-top">
+        <p className="control">
+          <Link className="button is-round is-medium is-error" to="/inbox"> Inbox </Link>
+        </p>
+        <p className="control">
+          <Link className="button is-round is-medium is-primary" to="/"> Discover More </Link>
+        </p>
+      </div>
+    </div>
+      )
+    }
+  }
 
   render () {
     return (
@@ -102,23 +139,7 @@ class SkillProfile extends Component {
         onToggle={() => this.setState({modalOpen: !this.state.modalOpen})}
         open={this.state.modalOpen}
         content={this.props.skill}>
-
-          <form onSubmit={this.handleSubmit} className = 'popup_inner'>
-            <textarea className="textarea" placeholder="Send a message with some kind words and what you are interested in" rows="6"
-              value={this.state.message} onChange={this.handleChange} ></textarea>
-
-            <div className="field is-grouped is-centered has-half-padding-top">
-              <p className="control">
-                <a onClick={() => this.setState({modalOpen: false})}
-                  className="button is-round is-medium is-error">Cancel</a>
-              </p>
-              <p className="control">
-                <a className="button is-round is-medium is-primary"
-                  type="submit">Send Request</a>
-              </p>
-            </div>
-
-          </form>
+        <div>{this.handleView()}</div>
         <div>{this.state.redirect}</div>
         </ModalFx>
       )}
