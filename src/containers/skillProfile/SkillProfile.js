@@ -89,10 +89,7 @@ class SkillProfile extends Component {
             </p>
           </div>
         </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 014d5600d645e08f980c418289a5591966d9ffd9
       <div className="container skill-reviews">
         <p className="subtitle has-text-centered is-size-12 ">
           What other people say...
@@ -126,7 +123,6 @@ class SkillProfile extends Component {
         </ModalFx>
       )}
     </div>
-  </div>
 
     )
   }
