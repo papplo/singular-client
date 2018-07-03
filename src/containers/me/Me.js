@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Me.css';
 import { updateProfileActionCreator, createSkillActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
+import ProfileForm from '../../components/forms/ProfileForm';
 
 // INSTURCTIONS
 // to update profile: this.putUpdatedProfile(userObj)
@@ -13,6 +14,12 @@ class Me extends Component {
     this.state = {
       me: 'unloaded',
       skillSubmitted: false,
+      name: '',
+      surname: '',
+      email: '',
+      dateOfBirth: '',
+      nationality: '',
+      description: ''
     }
   }
 
@@ -27,12 +34,12 @@ class Me extends Component {
       this.props.fetchProfile(this.props.token);
     }
   }
-  
+
   putUpdatedProfile = (updatedMe) => {
     this.setState({me: updatedMe});
     this.props.updateProfile(this.state.me, this.props.token)
   }
-  
+
   postNewSkill = (newSkill) => {
     this.props.postSkill(newSkill, this.props.token);
     this.setState({skillSubmitted: true})
@@ -51,15 +58,39 @@ class Me extends Component {
     this.props.postSkill(body, this.props.token);
   }
 
+  showSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+  }
+
+  handleInputChange = (event) => {
+    const target =event.target;
+
+    const newMe = this.state.me;
+    newMe[target.name] = target.value;
+    this.setState({
+      me: newMe
+    },
+    () => console.log('this.state.me['+target.name+']:', this.state.me[target.name])
+  )
+
+
+
+  }
+
   renderOrRedirect = () => {
     if (this.props.profile.status !== 200) return <Redirect to='/login' />
     else {
       return (
-        <div className='MeContainer'>
+        <div className='MeContainer container'>
           <img src={this.state.me.img_url}></img>
           <p>Me Page, user: {this.props.profile.body.name}</p>
           <p>user? {this.state.me.name}</p>
           <button onClick={this.createMockSkill}>Create skill</button>
+
+          <ProfileForm me={this.state.me} inputChange={this.handleInputChange}
+            submit={this.showSubmit}></ProfileForm>
+
         </div>
       )
     }
