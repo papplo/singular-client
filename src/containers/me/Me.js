@@ -59,9 +59,8 @@ class Me extends Component {
     return (
       <div>
       <div>{this.renderOrRedirect()}</div>
-      
       <div>
-      <SkillForm randomPhotos ={(category)=>this.props.randomPhotos(category)} categories = {this.props.categories} profile={this.props.profile} createSkill={(skill)=>{this.props.createSkill(skill, this.props.token)}}/>
+      <SkillForm  categories = {this.props.categories} profile={this.props.profile} createSkill={(skill)=>{this.props.createSkill(skill, this.props.token)}}/>
     </div>
     </div>
     )
@@ -79,6 +78,5 @@ const mapDispatchToProps = (dispatch) => ({
   updateProfile: (me, token) => dispatch(updateProfileActionCreator(me, token)),
   fetchProfile: (userToken) => dispatch(fetchProfileActionCreator(userToken)),
   createSkill: (skill, token) => dispatch(createSkillActionCreator(skill, token)),
-  randomPhotos: (category) => dispatch(fetchRandomPhotoActionCreator(category))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Me);
