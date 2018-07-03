@@ -6,10 +6,15 @@ body .is-serif {
   font-weight: 400 !important;
   letter-spacing: -0.02em; }
 
-.navbar-menu.is-active {
-  display: block;
-  position: absolute;
-  width: 100vh; }
+@media screen and (max-width: 1087px) {
+  #navMenu.is-active {
+    display: flex !important;
+    position: absolute !important;
+    position: absolute;
+    width: 100vw;
+    background-color: #00d1b2;
+    flex-direction: column;
+    align-items: center; } }
 
 .skills-list {
   margin-bottom: 1rem; }
@@ -63,8 +68,8 @@ a.custom {
   -webkit-transition: color 500ms ease;
   transition: color 500ms ease; }
 
-a:hover, a:focus {
-  color: white; }
+a.custom:hover, a.hover:focus {
+  color: whitesmoke; }
 
 a.custom {
   text-decoration: none;

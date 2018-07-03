@@ -85,11 +85,17 @@ body .is-serif {
 }
 
 // Navbar navmenu on touch is-active
-.navbar-menu {
-  &.is-active {
-    display: block;
-    position: absolute;
-    width: 100vh;
+@media screen and (max-width: 1087px) {
+  #navMenu {
+    &.is-active {
+      display: flex !important;
+      position: absolute !important;
+      position: absolute;
+      width: 100vw;
+      background-color: $turquoise;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }
 
@@ -167,8 +173,8 @@ a.custom {
   -webkit-transition: color 500ms ease;
   transition: color 500ms ease;
 }
-a:hover, a:focus {
-  color: white;
+a.custom:hover, a.hover:focus {
+  color: $white-ter;
 }
 
 a.custom {
