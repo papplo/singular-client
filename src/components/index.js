@@ -12,3 +12,4 @@ export { default as ActivityList } from './skills/ActivityList';
 export { default as User } from './user/User';
 export { default as Reviews } from './reviews/Reviews';
 export { default as CardMedia } from './skills/CardMedia';
+export { default as SkillForm } from './forms/SkillForm';

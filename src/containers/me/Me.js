@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Me.css';
-import { updateProfileActionCreator, createSkillActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
+import { updateProfileActionCreator, createSkillActionCreator, fetchProfileActionCreator, fetchRandomPhotoActionCreator } from '../../store/actions/actions';
+import { SkillForm } from '../../components/'
 
 // INSTURCTIONS
 // to update profile: this.putUpdatedProfile(userObj)
@@ -27,29 +28,18 @@ class Me extends Component {
       this.props.fetchProfile(this.props.token);
     }
   }
-  
+
   putUpdatedProfile = (updatedMe) => {
     this.setState({me: updatedMe});
     this.props.updateProfile(this.state.me, this.props.token)
   }
-  
+
   postNewSkill = (newSkill) => {
     this.props.postSkill(newSkill, this.props.token);
     this.setState({skillSubmitted: true})
   }
 
-  createMockSkill = () => {
-    console.log('creating skill')
-    const body = {
-      title: '101: Sauna techniques',
-      description: 'Curious about how to bath in a Sauna? -step in, and experience something unique!',
-      img_url: 'https://d34ip4tojxno3w.cloudfront.net/app/uploads/Finland_sauna-400x300.jpg',
-      location: 'Barcelona',
-      fk_user_id: '29cda09d-3a3e-44b5-9250-70674d843d87',
-      fk_category_id: '9e343b15-64d3-4f56-81b0-98de27a66a8c',
-    }
-    this.props.postSkill(body, this.props.token);
-  }
+
 
   renderOrRedirect = () => {
     if (this.props.profile.status !== 200) return <Redirect to='/login' />
@@ -66,7 +56,15 @@ class Me extends Component {
   }
 
   render () {
-    return (<div>{this.renderOrRedirect()}</div>)
+    return (
+      <div>
+      <div>{this.renderOrRedirect()}</div>
+      
+      <div>
+      <SkillForm randomPhotos ={(category)=>this.props.randomPhotos(category)} categories = {this.props.categories} profile={this.props.profile} createSkill={(skill)=>{this.props.createSkill(skill, this.props.token)}}/>
+    </div>
+    </div>
+    )
   }
 }
 
@@ -74,11 +72,13 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
   token: state.token,
   skillCreated: state.createSkill,
+  categories: state.categories,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updateProfile: (me, token) => dispatch(updateProfileActionCreator(me, token)),
-  postSkill: (skill, token) => dispatch(createSkillActionCreator(skill, token)),
   fetchProfile: (userToken) => dispatch(fetchProfileActionCreator(userToken)),
+  createSkill: (skill, token) => dispatch(createSkillActionCreator(skill, token)),
+  randomPhotos: (category) => dispatch(fetchRandomPhotoActionCreator(category))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Me);
