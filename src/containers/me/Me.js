@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Me.css';
+import { SkillForm } from '../../components/'
 import { updateProfileActionCreator, createSkillActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
 import ProfileForm from '../../components/forms/ProfileForm';
 
@@ -35,6 +36,7 @@ class Me extends Component {
   }
 
 
+
   showSubmitProfile = (event) => {
     event.preventDefault();
     this.props.updateProfile(this.state.me, this.props.token);
@@ -50,9 +52,6 @@ class Me extends Component {
     },
     () => console.log('this.state.me['+target.name+']:', this.state.me[target.name])
   )
-
-
-
   }
 
   renderOrRedirect = () => {
@@ -74,7 +73,14 @@ class Me extends Component {
   }
 
   render () {
-    return (<div>{this.renderOrRedirect()}</div>)
+    return (
+      <div>
+      <div>{this.renderOrRedirect()}</div>
+      <div>
+      <SkillForm  categories = {this.props.categories} profile={this.props.profile} createSkill={(skill)=>{this.props.createSkill(skill, this.props.token)}}/>
+    </div>
+    </div>
+    )
   }
 }
 
@@ -82,11 +88,12 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
   token: state.token,
   skillCreated: state.createSkill,
+  categories: state.categories,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updateProfile: (me, token) => dispatch(updateProfileActionCreator(me, token)),
-  postSkill: (skill, token) => dispatch(createSkillActionCreator(skill, token)),
   fetchProfile: (userToken) => dispatch(fetchProfileActionCreator(userToken)),
+  createSkill: (skill, token) => dispatch(createSkillActionCreator(skill, token)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Me);
