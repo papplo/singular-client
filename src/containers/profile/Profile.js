@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import pathParser from '../../services/pathparser';
 import { fetchUserActionCreator } from '../../store/actions/actions';
-import {  Reviews, User, ActivityCards  } from '../../components/';
+import {  Reviews, User, ActivityList } from '../../components/';
 
 
 //PATH: root/user_id
@@ -38,9 +38,7 @@ class Profile extends Component {
         </div>
 
       <div className="section user-skills">
-        <ActivityCards
-          skill={this.props.user.body.skills}
-          user={this.props.user}/>
+        <ActivityList skills={this.props.skills}/>
       </div>
 
       <div className="section user-reviews">
