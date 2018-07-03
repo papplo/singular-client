@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Me.css';
-import { SkillForm } from '../../components/'
+import { SkillForm, SkillList } from '../../components/'
 import { updateProfileActionCreator, createSkillActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
 import ProfileForm from '../../components/forms/ProfileForm';
 
@@ -51,7 +51,11 @@ class Me extends Component {
       me: newMe
     },
     () => console.log('this.state.me['+target.name+']:', this.state.me[target.name])
-  )
+    )
+  }
+
+  createSkill = (skill) => {
+    this.props.createSkill(skill, this.props.token)
   }
 
   renderOrRedirect = () => {
@@ -67,6 +71,11 @@ class Me extends Component {
           <ProfileForm me={this.state.me} inputChange={this.handleInputChangeProfile}
             submit={this.showSubmitProfile}></ProfileForm>
 
+          <SkillList skills={this.props.profile.body.skills}/>
+
+          <SkillForm  categories = {this.props.categories} profile={this.props.profile}
+            createSkill={this.createSkill}/>
+
         </div>
       )
     }
@@ -74,12 +83,7 @@ class Me extends Component {
 
   render () {
     return (
-      <div>
       <div>{this.renderOrRedirect()}</div>
-      <div>
-      <SkillForm  categories = {this.props.categories} profile={this.props.profile} createSkill={(skill)=>{this.props.createSkill(skill, this.props.token)}}/>
-    </div>
-    </div>
     )
   }
 }
@@ -88,7 +92,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
   token: state.token,
   skillCreated: state.createSkill,
-  categories: state.categories,
+  categories: state.categories
 });
 
 const mapDispatchToProps = (dispatch) => ({
