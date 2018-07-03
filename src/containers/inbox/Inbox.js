@@ -29,29 +29,47 @@ class Inbox extends Component {
     this.setState({buttonValue: value});
   }
 
-  renderOrRedirect = () => {
-    if (this.props.token === 0) return <Redirect to='/login' />
-    else {
-      if (this.props.renderChat.render) {
-        return <Chat></Chat>
-      } else {
-        return (
-          <div className='inboxContainer'>
-            <div className='buttons'>
-              <button onClick={() => this.changeButtonValue('chats')} className='chats'>Chats</button>
-              <button onClick={() => this.changeButtonValue('requests')} className='requests'>Requests</button>
-            </div>
-            <div className='conversationContainer'>
-              {this.renderConversations()}
-            </div>
-          </div>
-        )
-      }
-    }
+  renderChatHeader = () => {
+    return (
+      <nav class="breadcrumb panel-heading" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <a onClick={() => this.changeButtonValue('chats')}>
+              <span class="icon is-small">
+                <i class="fas fa-comments" aria-hidden="true"></i>
+              </span>
+              <span>Chats</span>
+            </a>
+          </li>
+          <li>
+            <a onClick={() => this.changeButtonValue('requests')}>
+              <span class="icon is-small">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </span>
+              <span>Requests</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    )
   }
 
+  renderOrRedirect = () => {
+    if (this.props.token === 0) return <Redirect to='/login' />
+    else return (
+      <div className='inboxContainer panel'>
+        {this.renderChatHeader()}
+        <div className='conversationContainer' style={{marginLeft: '10px', marginRight: '10px'}}>
+          {this.renderConversations()}
+        </div>
+      </div>
+    )    
+  }
 
   renderConversations = () => {
+    if (this.props.renderChat.render) {
+      return <Chat></Chat>
+    }
     if (this.props.profile.status !== 200) return null;
     const conversationsToRender = []
     const conversationsStartedByMe = this.props.profile.body.conversationsStartedByMe;

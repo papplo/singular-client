@@ -53,7 +53,7 @@ class Chat extends Component {
   renderButtons = () => {
     return (
       <div>
-        <button onClick={this.handleSubmit}>Send</button>
+        {/* <button onClick={this.handleSubmit}>Send</button> */}
         <button onClick={this.props.chatToggle}>Back</button>
       </div>
     )
@@ -63,7 +63,8 @@ class Chat extends Component {
     this.setState({input: event.target.value});
   }
 
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+    event.preventDefault();
     if (this.state.input.length > 0) {
       this.props.sendMessage(this.state.input, this.props.conversationID.conversationID, this.props.token);
     }
@@ -76,8 +77,16 @@ class Chat extends Component {
         <div>
           {this.renderMessages()}
         </div>
+
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <input autoComplete="off" type='text' className='messageInput' placeholder="say something" name='inputValue' value={this.state.input} onChange={this.handleChange}/>
+          </label>
+          <input type="submit" value="Send" />
+        </form>
+
         <div>
-          <input autoComplete="off" type='text' className='messageInput' placeholder="say something" name='inputValue' value={this.state.input} onChange={this.handleChange}/>
+          {/* <input autoComplete="off" type='text' className='messageInput' placeholder="say something" name='inputValue' value={this.state.input} onChange={this.handleChange}/> */}
         </div>
         {this.renderButtons()}
       </div>
