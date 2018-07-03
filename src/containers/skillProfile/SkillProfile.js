@@ -21,6 +21,7 @@ class SkillProfile extends Component {
     };
   }
 
+
   componentWillMount() {
     this.initialize();
     // window.addEventListener("keyup", () => modalFx._keyHandling('a'));
@@ -88,6 +89,7 @@ class SkillProfile extends Component {
             </p>
           </div>
         </div>
+
       <div className="container skill-reviews">
         <p className="subtitle has-text-centered is-size-12 ">
           What other people say...
@@ -120,10 +122,8 @@ class SkillProfile extends Component {
         <div>{this.state.redirect}</div>
         </ModalFx>
       )}
-
-
-
     </div>
+  </div>
 
     )
   }
