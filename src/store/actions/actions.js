@@ -77,7 +77,7 @@ const updateProfileActionCreator = (me, userToken) => ({
   type: 'UPDATE_PROFILE',
   [API]: {
     endpoint: `/me`,
-    methdod: 'PUT',
+    method: 'PUT',
     headers: {
       'Content-Type': 'Application/JSON',
       'Authorization': 'Bearer ' + userToken,
