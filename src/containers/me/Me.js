@@ -13,13 +13,7 @@ class Me extends Component {
     super(props);
     this.state = {
       me: 'unloaded',
-      skillSubmitted: false,
-      name: '',
-      surname: '',
-      email: '',
-      dateOfBirth: '',
-      nationality: '',
-      description: ''
+      skillSubmitted: false
     }
   }
 
@@ -35,35 +29,18 @@ class Me extends Component {
     }
   }
 
-  putUpdatedProfile = (updatedMe) => {
-    this.setState({me: updatedMe});
-    this.props.updateProfile(this.state.me, this.props.token)
-  }
-
   postNewSkill = (newSkill) => {
     this.props.postSkill(newSkill, this.props.token);
     this.setState({skillSubmitted: true})
   }
 
-  createMockSkill = () => {
-    console.log('creating skill')
-    const body = {
-      title: '101: Sauna techniques',
-      description: 'Curious about how to bath in a Sauna? -step in, and experience something unique!',
-      img_url: 'https://d34ip4tojxno3w.cloudfront.net/app/uploads/Finland_sauna-400x300.jpg',
-      location: 'Barcelona',
-      fk_user_id: '29cda09d-3a3e-44b5-9250-70674d843d87',
-      fk_category_id: '9e343b15-64d3-4f56-81b0-98de27a66a8c',
-    }
-    this.props.postSkill(body, this.props.token);
+
+  showSubmitProfile = (event) => {
+    event.preventDefault();
+    this.props.updateProfile(this.state.me, this.props.token);
   }
 
-  showSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target);
-  }
-
-  handleInputChange = (event) => {
+  handleInputChangeProfile = (event) => {
     const target =event.target;
 
     const newMe = this.state.me;
@@ -88,8 +65,8 @@ class Me extends Component {
           <p>user? {this.state.me.name}</p>
           <button onClick={this.createMockSkill}>Create skill</button>
 
-          <ProfileForm me={this.state.me} inputChange={this.handleInputChange}
-            submit={this.showSubmit}></ProfileForm>
+          <ProfileForm me={this.state.me} inputChange={this.handleInputChangeProfile}
+            submit={this.showSubmitProfile}></ProfileForm>
 
         </div>
       )
