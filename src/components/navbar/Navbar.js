@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-
+import ModalFx from "../../services/modalFx";
 
 export default class Navbar extends React.Component {
 
@@ -21,19 +21,20 @@ export default class Navbar extends React.Component {
     if(this.props.profile.status !== 200){
       return (
         <Link className="navbar-item" to="/login">Login</Link>
-      )}
-  }
-
-  showMe (){
-    if(this.props.profile.status === 200){
+      )
+    } else if(this.props.profile.status === 200){
         return (
         <Link className="navbar-item" to="/me">
-        <div className="media center">
-          <figure className="image is-24x24">
-            <img className="is-circular" src={this.props.profile.body.img_url} alt="Placeholder image"/>
-          </figure>
+        <div className="media is-clearfix	">
+          <div className="media-left">
+            <p className="image is-24x24">
+              <img className="is-circular" src={this.props.profile.body.img_url} alt="my profile"/>
+            </p>
+          </div>
+          <div className="media-content">
+            <p>Hello {this.props.profile.body.name}</p>
+          </div>
         </div>
-        <p>Hello {this.props.profile.body.name}!</p>
         </Link>
         )
       }
@@ -43,7 +44,8 @@ export default class Navbar extends React.Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <Link id="homeItem" className="navbar-item" to="/">Logo and Home</Link>
+          <Link id="homeItem" className="navbar-item"
+            to="/">Logo and Home</Link>
 
           <span role="button" id="burger" className="navbar-burger" data-target="navMenu"
             onClick={this.navMenuToggle}
@@ -51,13 +53,11 @@ export default class Navbar extends React.Component {
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
           </span>
         </div>
 
         <div id="navMenu" className="navbar-menu navbar-end">
-          <div className="navbar-end" onClick={this.navMenuToggle}>
-            {this.showMe()}
+          <div className="navbar-end has-text-centered" onClick={this.navMenuToggle}>
             <Link className="navbar-item" to="/discover-categories">Topics</Link>
             {this.showLogin()}
             <Link className="navbar-item" to="/inbox">Inbox</Link>
