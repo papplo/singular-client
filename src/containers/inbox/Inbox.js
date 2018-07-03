@@ -5,10 +5,6 @@ import { ConversationCard } from '../../components/conversation/ConversationCard
 import Chat from './../chat/Chat';
 import { acceptOrRejectConversationActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
 import './Inbox.css';
-
-
-
-
 class Inbox extends Component {
   constructor(props) {
     super(props)
@@ -30,6 +26,20 @@ class Inbox extends Component {
   }
 
   renderChatHeader = () => {
+    if (this.props.renderChat.render) return (
+      <nav class="breadcrumb panel-heading" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <a onClick={this.props.chatToggleOff}>
+              <span class="icon is-small">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+              </span>
+              <span>Back</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    )
     return (
       <nav class="breadcrumb panel-heading" aria-label="breadcrumbs">
         <ul>
@@ -108,6 +118,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   putConversationStatus: (id, action, userToken) => dispatch(acceptOrRejectConversationActionCreator(id, action, userToken)),
   chatToggle: (conversationID) => dispatch({type: 'CHAT_TOGGLE', conversationID: conversationID, render: true}),
+  chatToggleOff: () => dispatch({type: 'CHAT_TOGGLE', conversationID: 0, render: false}),
   fetchProfile: (userToken) => dispatch(fetchProfileActionCreator(userToken)),
   clear: (actionType) => dispatch({type: actionType})
 });
