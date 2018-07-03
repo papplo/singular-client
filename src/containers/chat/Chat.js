@@ -44,8 +44,9 @@ class Chat extends Component {
     if (!this.props.conversation.body.messages) return;
     return this.props.conversation.body.messages.map((el) => {
       if (el.message_creator_id === this.props.profile.body.pk_user_id) return <p>{'You: ' + el.message}</p>
-      if (el.message_creator_id === this.props.conversation.fk_sender_user_id) return <p>{this.props.conversation.sender_name + ': ' + el.message}</p>
-      else return <p>{this.props.conversation.skill_creator_name + ': ' + el.message}</p>
+ 
+      if (el.message_creator_id === this.props.conversation.body.fk_sender_user_id) return <p>{this.props.conversation.body.sender_name + ': ' + el.message}</p>
+      else return <p>{this.props.conversation.body.skill_creator_name + ': ' + el.message}</p>
     })
   }
 
