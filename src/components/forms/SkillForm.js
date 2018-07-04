@@ -118,20 +118,23 @@ export default class SkillForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label className="label">
-            Title:
-            <input className="input" name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-          </label>
-          <label className="label">
+          <div className="columns">
+            <label className="label column has-text-grey">
+              Title:
+              <input className="input" name="title" type="text" value={this.state.title} onChange={this.handleChange} autoComplete="off"/>
+            </label>
+            <label className="label column has-text-grey">
+              Location:
+              <input className="input" name="location" type="text" value={this.state.location} onChange={this.handleChange} autoComplete="off"/>
+            </label>
+          </div>
+          <label className="label has-text-grey">
             Description:
             <textarea className="textarea" placeholder="Explain something about what you want to share" name="description"
               value={this.handleChange.description} onChange={this.handleChange} autoComplete="off"></textarea>
           </label>
-          <label className="label">
-            Location:
-            <input className="input" name="location" type="text" value={this.state.location} onChange={this.handleChange} />
-          </label>
-
+          <br/>
+          <p className="title is-5">Select a Category and Image</p>
           <div className="columns">
             <div className="is-one-third column">
               <div className="dropdown is-active">
@@ -158,7 +161,7 @@ export default class SkillForm extends Component {
             </div>
           </div>
 
-          <button className="button is-link" type="submit">Save Skill</button>
+          <button className="button is-primary" type="submit">Save Skill</button>
         </form>
       </div>
       );
