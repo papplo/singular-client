@@ -90,7 +90,6 @@ export default class ModalFX extends React.Component {
       <div ref="modal" id="modal-id" className="modal modal-fx-3dSignDown">
         <div className="modal-background" style={this.bgImage}></div>
         <div className="modal-content is-round">
-          <p className="has-text-centered title is-4 has-text-white">Logo Here</p>
           <section className="modal-card-body">
             <div className="content is-round">
               <p className="title is-5">{this.props.content.body.title}</p>
