@@ -27,12 +27,12 @@ class Inbox extends Component {
 
   renderChatHeader = () => {
     if (this.props.renderChat.render) return (
-      <nav class="navbar breadcrumb panel-heading is-fixed-top" aria-label="breadcrumbs">
+      <nav className="navbar breadcrumb panel-heading is-fixed-top" aria-label="breadcrumbs">
         <ul>
           <li>
             <a onClick={this.props.chatToggleOff}>
-              <span class="icon is-small">
-                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+              <span className="icon is-small">
+                <i className="fas fa-chevron-left" aria-hidden="true"></i>
               </span>
               <span>Back</span>
             </a>
@@ -41,20 +41,20 @@ class Inbox extends Component {
       </nav>
     )
     return (
-      <nav class="breadcrumb panel-heading" aria-label="breadcrumbs">
+      <nav className="breadcrumb panel-heading" aria-label="breadcrumbs">
         <ul>
           <li>
             <a onClick={() => this.changeButtonValue('chats')}>
-              <span class="icon is-small">
-                <i class="fas fa-comments" aria-hidden="true"></i>
+              <span className="icon is-small">
+                <i className="fas fa-comments" aria-hidden="true"></i>
               </span>
               <span>Chats</span>
             </a>
           </li>
           <li>
             <a onClick={() => this.changeButtonValue('requests')}>
-              <span class="icon is-small">
-                <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span className="icon is-small">
+                <i className="fas fa-envelope" aria-hidden="true"></i>
               </span>
               <span>Requests</span>
             </a>
