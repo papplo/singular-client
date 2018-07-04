@@ -17,6 +17,16 @@ export default class Navbar extends React.Component {
     })
   }
 
+  logoHomeToggle() {
+    const hotElements = [
+      document.getElementById('navMenu'),
+      document.getElementById('burger')];
+
+    hotElements.forEach((el) => {
+      if(el.classList.contains('is-active')) el.classList.remove('is-active')
+    })
+  }
+
   showLogin (){
     if(this.props.profile.status !== 200){
       return (
@@ -45,7 +55,7 @@ export default class Navbar extends React.Component {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <Link id="homeItem" className="navbar-item"
-            to="/">Logo and Home</Link>
+            onClick={this.logoHomeToggle} to="/">Logo and Home</Link>
 
           <span role="button" id="burger" className="navbar-burger" data-target="navMenu"
             onClick={this.navMenuToggle}

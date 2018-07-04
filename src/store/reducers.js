@@ -21,5 +21,5 @@ import {
 } from './reducers/asyncDataReducer';
 
 export default combineReducers({
-  location, categories, skills, profile, genreSkills, idSkill, user, token, updateProfile, createSkill, acceptOrRejectConversation, chatToggle, conversation, createConversation, createMessage,
+  location, categories, skills, profile, genreSkills, idSkill, user, token, updateProfile, createSkill, acceptOrRejectConversation, chatToggle, conversation, createConversation, createMessage, createReview,
 })
