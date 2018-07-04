@@ -5,7 +5,7 @@ import config from '../../config/config';
 import pathParser from '../../services/pathparser';
 import ModalFx from '../../services/modalFx';
 import { CardMedia, AsyncComponent, Reviews, User  } from '../../components/';
-import { fetchIdSkillActionCreator, fetchUserActionCreator, createConversationActionCreator } from '../../store/actions/actions';
+import { fetchIdSkillActionCreator, fetchUserActionCreator, createConversationActionCreator, createReviewActionCreator } from '../../store/actions/actions';
 
 import '../../style/modal-fx.css';
 
@@ -57,7 +57,7 @@ class SkillProfile extends Component {
       skillId: this.props.skill.body.pk_skill_id,
       userId: this.props.profile.body.pk_user_id
       }
-      this.props.createConversation(newMessage);
+      this.props.createConversation(newMessage, this.props.token);
       this.setState({ sendRequest: true })
     } else {
       this.setState({ redirect: (
@@ -101,6 +101,10 @@ class SkillProfile extends Component {
     }
   }
 
+  createReview = (review, conversationId) => {
+    this.props.createReview(review, conversationId, this.props.token)
+  }
+
   render () {
     return (
       <div className="container">
@@ -131,7 +135,7 @@ class SkillProfile extends Component {
         <p className="subtitle has-text-centered is-size-12 ">
           What other people say...
         </p>
-        <Reviews elem={this.props.skill}/>
+        <Reviews createReview={this.createReview} elem={this.props.skill} profile ={this.props.profile}/>
       </div>
 
       {AsyncComponent(this.props.skill.status, this.props.skill,
@@ -153,14 +157,16 @@ const mapStateToProps = (state) => ({
   skill: state.idSkill,
   user: state.user,
   skills: state.genreSkill,
-  profile: state.profile
+  profile: state.profile,
+  token: state.token
 
 });
 const mapDispatchToProps = (dispatch) => ({
   idSkill: (id) => dispatch(fetchIdSkillActionCreator(id)),
   fetchUser: (id) => dispatch(fetchUserActionCreator(id)),
   clear: (actionType) => dispatch({type: actionType}),
-  createConversation: (newMessage) => dispatch(createConversationActionCreator(newMessage))
+  createConversation: (newMessage, userToken) => dispatch(createConversationActionCreator(newMessage, userToken)),
+  createReview: (description, conversationId, userToken) => dispatch(createReviewActionCreator(description, conversationId, userToken))
 
 });
 

@@ -158,6 +158,21 @@ const createMessageActionCreator = (message, conversationID, userToken) => ({
   }
 })
 
+const createReviewActionCreator = (description, conversationID, userToken) => ({
+  type: 'CREATE_REVIEW',
+  [API]: {
+    endpoint: `/review/${conversationID}`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'Application/JSON',
+      'Authorization': 'Bearer ' + userToken,
+    },
+    body: {
+      description,
+    }
+  }
+})
+
 
 
 export {
@@ -173,5 +188,6 @@ export {
   fetchConversationActionCreator,
   createConversationActionCreator,
   acceptOrRejectConversationActionCreator,
-  createMessageActionCreator
+  createMessageActionCreator,
+  createReviewActionCreator
 }
