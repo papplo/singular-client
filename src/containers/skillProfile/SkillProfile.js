@@ -79,7 +79,7 @@ class SkillProfile extends Component {
             </p>
             <p className="control">
               <a onClick={this.handleSubmit} className="button is-round is-medium is-primary"
-                type="submit">Send Request</a>
+                type="submit">Request now</a>
             </p>
           </div>
         </form>
@@ -119,13 +119,8 @@ class SkillProfile extends Component {
           )}
           <div className="field is-grouped is-centered has-half-padding-top">
             <p className="control">
-              <a className="button is-round is-medium is-outlined is-primary">
-                Learn more
-              </a>
-            </p>
-            <p className="control">
               <a onClick={() => this.setState({modalOpen: true})} className="button is-round is-medium is-primary">
-                Request now
+                Learn more
               </a>
             </p>
           </div>
