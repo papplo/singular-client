@@ -13,7 +13,8 @@ class Me extends Component {
     super(props);
     this.state = {
       me: 'unloaded',
-      skillSubmitted: false
+      skillSubmitted: false,
+      showOrCreate: 'show'
     }
   }
 
@@ -52,26 +53,57 @@ class Me extends Component {
   }
 
   createSkill = (skill) => {
-    this.props.createSkill(skill, this.props.token)
+    this.props.createSkill(skill, this.props.token);
+    this.setState({
+      showOrCreate : 'show',
+      skillSubmitted: true
+    });
+  }
+
+  goToAddSkill = () => {
+    this.setState({showOrCreate : 'create'});
+  }
+
+  goToShowSkills = () => {
+    this.setState({showOrCreate : 'show'});
   }
 
   showOrCreateSkills = () =>{
-
+    if (this.state.showOrCreate === 'show') {
+      return (
+        <div className="section">
+          <div className="level">
+            <p className="title is-4 level-left">Your Skills</p>
+            <button className="button is-link is-outlined level-right" onClick={this.goToAddSkill}>
+              Add a new Skill</button>
+          </div>
+          <SkillList skills={this.props.profile.body.skills}/>
+        </div>
+      )
+    } else {
+      return (
+        <div className="section">
+          <div className="level">
+            <p className="title is-4 level-left">Create a new Skill</p>
+            <button className="button is-link is-outlined level-right" onClick={this.goToShowSkills}>
+              Go back</button>
+          </div>
+          <SkillForm  categories = {this.props.categories} profile={this.props.profile}
+            createSkill={this.createSkill}/>
+        </div>
+      );
+    }
   }
 
   renderOrRedirect = () => {
-    if (this.props.profile.status !== 200) return <Redirect to='/login' />
+    if (!this.props.profile.body.pk_user_id) return <Redirect to='/login' />
     else {
       return (
         <div className='MeContainer container'>
           <User user={this.props.profile}/>
           <ProfileForm me={this.state.me} inputChange={this.handleInputChangeProfile}
             submit={this.showSubmitProfile}/>
-          <br/>
-          <h2>User Skills</h2>
-          <SkillList skills={this.props.profile.body.skills}/>
-          <SkillForm  categories = {this.props.categories} profile={this.props.profile}
-            createSkill={this.createSkill}/>
+          {this.showOrCreateSkills()}
         </div>
       )
     }

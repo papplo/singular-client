@@ -104,7 +104,10 @@ export default class SkillForm extends Component {
     if (this.state.selectedCategory === 'Choose Category') return null;
     else {
       return (
-        <button className="button" onClick={()=>this.randomPhotos(this.state.selectedCategory)}>
+        <button className="button" onClick={(event)=>{
+          event.preventDefault();
+          this.randomPhotos(this.state.selectedCategory)
+        }}>
           Reload Image
         </button>
       );
@@ -114,51 +117,49 @@ export default class SkillForm extends Component {
   render() {
     return (
       <div>
-        <div className="field">
-          <form onSubmit={this.handleSubmit}>
-            <label className="label">
-              Title:
-              <input className="input" name="title" type="text" value={this.state.title} onChange={this.handleChange} />
-            </label>
-            <label className="label">
-              Description:
-              <textarea className="textarea" placeholder="Explain something about what you want to share" name="description"
-                value={this.handleChange.description} onChange={this.handleChange} autoComplete="off"></textarea>
-            </label>
-            <label className="label">
-              Location:
-              <input className="input" name="location" type="text" value={this.state.location} onChange={this.handleChange} />
-            </label>
+        <form onSubmit={this.handleSubmit}>
+          <label className="label">
+            Title:
+            <input className="input" name="title" type="text" value={this.state.title} onChange={this.handleChange} />
+          </label>
+          <label className="label">
+            Description:
+            <textarea className="textarea" placeholder="Explain something about what you want to share" name="description"
+              value={this.handleChange.description} onChange={this.handleChange} autoComplete="off"></textarea>
+          </label>
+          <label className="label">
+            Location:
+            <input className="input" name="location" type="text" value={this.state.location} onChange={this.handleChange} />
+          </label>
 
-            <div className="columns">
-              <div className="is-one-third column">
-                <div className="dropdown is-active">
-                  <div className="dropdown-trigger">
-                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu"
-                      onClick={this.handleDropDownClick}>
-                      <span>{this.state.selectedCategory}</span>
-                      <span className="icon is-small">
-                        <i className="fas fa-angle-down" aria-hidden="true"></i>
-                      </span>
-                    </button>
-                  </div>
-                  <div className="dropdown-menu" id="dropdown-menu" role="menu"
-                    style={{display: this.state.showDropDown}}>
-                    <div className="dropdown-content">
-                      {this.dropDownItems()}
-                    </div>
+          <div className="columns">
+            <div className="is-one-third column">
+              <div className="dropdown is-active">
+                <div className="dropdown-trigger">
+                  <button className="button" aria-haspopup="true" aria-controls="dropdown-menu"
+                    onClick={this.handleDropDownClick}>
+                    <span>{this.state.selectedCategory}</span>
+                    <span className="icon is-small">
+                      <i className="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div className="dropdown-menu" id="dropdown-menu" role="menu"
+                  style={{display: this.state.showDropDown}}>
+                  <div className="dropdown-content">
+                    {this.dropDownItems()}
                   </div>
                 </div>
-                {this.reloadImage()}
               </div>
-              <div className="column">
-                <img src={this.state.photo}></img>
-              </div>
+              {this.reloadImage()}
             </div>
+            <div className="column">
+              <img src={this.state.photo}></img>
+            </div>
+          </div>
 
-            <button className="button is-link" type="submit">Save Skill</button>
-          </form>
-        </div>
+          <button className="button is-link" type="submit">Save Skill</button>
+        </form>
       </div>
       );
   }
