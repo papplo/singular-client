@@ -27,7 +27,7 @@ class Inbox extends Component {
 
   renderChatHeader = () => {
     if (this.props.renderChat.render) return (
-      <nav class="breadcrumb panel-heading" aria-label="breadcrumbs">
+      <nav class="navbar breadcrumb panel-heading is-fixed-top" aria-label="breadcrumbs">
         <ul>
           <li>
             <a onClick={this.props.chatToggleOff}>
@@ -67,13 +67,19 @@ class Inbox extends Component {
   renderOrRedirect = () => {
     if (this.props.token === 0) return <Redirect to='/login' />
     else return (
-      <div className='inboxContainer panel'>
+      // <div className='inboxContainer panel' style={this.renderChatBackground()}>
+      <div className='inboxContainer panel' style={{}}>
         {this.renderChatHeader()}
         <div className='conversationContainer' style={{marginLeft: '10px', marginRight: '10px'}}>
           {this.renderConversations()}
         </div>
       </div>
     )    
+  }
+
+  renderChatBackground = () => {
+    if (this.props.renderChat.render) return {background: 'black'};
+    else return {};
   }
 
   renderConversations = () => {
