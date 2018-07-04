@@ -5,7 +5,7 @@ import config from '../../config/config';
 import pathParser from '../../services/pathparser';
 import ModalFx from '../../services/modalFx';
 import { CardMedia, AsyncComponent, Reviews, User  } from '../../components/';
-import { fetchIdSkillActionCreator, fetchUserActionCreator, createConversationActionCreator, createReviewActionCreator } from '../../store/actions/actions';
+import { fetchIdSkillActionCreator, fetchUserActionCreator, createConversationActionCreator, createReviewActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
 
 import '../../style/modal-fx.css';
 
@@ -31,6 +31,11 @@ class SkillProfile extends Component {
   componentDidUpdate() {
     if (this.props.skill.status === 200 && this.props.user.status === 'unloaded') {
       this.props.fetchUser(this.props.skill.body.fk_user_id)
+    }
+
+    if (this.props.skillCreated.status === 201) {
+      this.props.clear('CREATE_CONVERSATION_CLEAR');
+      this.props.fetchProfile(this.props.token);
     }
   }
 
@@ -153,10 +158,12 @@ const mapStateToProps = (state) => ({
   user: state.user,
   skills: state.genreSkill,
   profile: state.profile,
-  token: state.token
+  token: state.token,
+  skillCreated: state.createConversation,
 
 });
 const mapDispatchToProps = (dispatch) => ({
+  fetchProfile: (userToken) => dispatch(fetchProfileActionCreator(userToken)),
   idSkill: (id) => dispatch(fetchIdSkillActionCreator(id)),
   fetchUser: (id) => dispatch(fetchUserActionCreator(id)),
   clear: (actionType) => dispatch({type: actionType}),

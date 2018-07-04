@@ -13,6 +13,7 @@ class Category extends Component {
     super(props);
     this.state = {
       initialize: false,
+      category: '',
     }
   }
 
@@ -65,11 +66,20 @@ class Category extends Component {
     console.log(event.target);
   }
 
+  renderBackground = () => {
+    for (let i = 0; i < this.props.categories.body.length; i++) {
+      if (this.state.category === this.props.categories.body[i].name) {
+        return this.props.categories.body[i].img_url;
+      }
+    }
+    return 'https://images.unsplash.com/photo-1530636290704-ea332c92a637?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3f20504304882f1f3a4244af47c9dc0e&auto=format&fit=crop&w=802&q=80'
+  }
+  //`url(${this.renderBackground()})`
   render () {
     console.log('skills: ', this.props.skills);
     return (
       <div>
-        <section className="section is-center has-stroke-bottom has-half-padding-top has-background-dark	has-text-warning">
+        <section style={{background: "url(" + this.renderBackground() + ")"}} className="section is-center has-stroke-bottom has-half-padding-top has-text-warning has-bg-img">
           <div className="container category-title">
             <h1 className="title is-capitalized has-text-warning is-2">
               {this.state.category}
