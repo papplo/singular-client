@@ -7,14 +7,14 @@ export default ({me, inputChange, submit, updateStatus}) => {
       <form onSubmit={(e) => submit(e)}>
         <div className="columns is-mobile">
           <div className="column">
-            <label className="label">Name</label>
+            <label className="label has-text-grey">Name</label>
             <div className="control">
               <input className="input" type="text" placeholder="Write your name here" name="name"
                 value={me.name} onChange={inputChange} autoComplete="off"/>
             </div>
           </div>
           <div className="column">
-            <label className="label">Surname</label>
+            <label className="label has-text-grey">Surname</label>
             <div className="control">
               <input className="input" type="text" placeholder="Write your surname here" name="surname"
                 value={me.surname} onChange={inputChange} autoComplete="off"/>
@@ -23,14 +23,14 @@ export default ({me, inputChange, submit, updateStatus}) => {
         </div>
         <div className="columns is-mobile">
           <div className="column">
-            <label className="label">Email</label>
+            <label className="label has-text-grey">Email</label>
             <div className="control">
               <input className="input" type="email" placeholder="Your email here" name="email"
                 value={me.email} onChange={inputChange} />
             </div>
           </div>
           <div className="column">
-            <label className="label">Date of birth</label>
+            <label className="label has-text-grey">Date of birth</label>
             <div className="control">
               <input className="input" type="date" placeholder="01-01-2000" name="dateOfBirth" autoComplete="off"
                 value={me.date_of_birth == null ? undefined : me.date_of_birth} onChange={inputChange}/>
@@ -38,7 +38,7 @@ export default ({me, inputChange, submit, updateStatus}) => {
           </div>
         </div>
         <div className="field">
-          <label className="label">Description</label>
+          <label className="label has-text-grey">Description</label>
           <div className="control">
             <textarea className="textarea" placeholder="Explain something about yourself" name="description"
               value={me.description} onChange={inputChange} autoComplete="off"></textarea>
@@ -47,10 +47,15 @@ export default ({me, inputChange, submit, updateStatus}) => {
 
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-link">Save</button>
+            <button className="button is-primary">Save</button>
           </div>
           <div className="control">
-            <p className="button is-success" style={{display: !updateStatus ? 'none':'block'}}>Updated</p>
+            <p className="button is-primary" style={{display: !updateStatus ? 'none':'block'}}>
+              <span class="icon is-small">
+                <i class="fas fa-check"></i>
+              </span>
+              <span>Updated</span>
+            </p>
           </div>
         </div>
       </form>

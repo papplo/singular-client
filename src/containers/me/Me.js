@@ -83,7 +83,7 @@ class Me extends Component {
         <div className="section">
           <div className="level">
             <p className="title is-4 level-left">Your Skills</p>
-            <button className="button is-link is-outlined level-right" onClick={this.goToAddSkill}>
+            <button className="button is-primary level-right" onClick={this.goToAddSkill}>
               Add a new Skill</button>
           </div>
           <SkillList skills={this.props.profile.body.skills}/>
@@ -94,7 +94,7 @@ class Me extends Component {
         <div className="section">
           <div className="level">
             <p className="title is-4 level-left">Create a new Skill</p>
-            <button className="button is-link is-outlined level-right" onClick={this.goToShowSkills}>
+            <button className="button is-primary level-right" onClick={this.goToShowSkills}>
               Go back</button>
           </div>
           <SkillForm  categories = {this.props.categories} profile={this.props.profile}
