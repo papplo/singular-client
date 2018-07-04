@@ -26,7 +26,7 @@ export default class Reviews extends AsyncList {
   }
 
   addReview = () => {
-    if(this.props.profile.status !== 200) return null
+    if(!this.props.profile || this.props.profile.status !== 200) return null
     let conversation = this.props.profile.body.conversationsStartedByMe.find(conversation => conversation.fk_skill_id === this.props.elem.body.pk_skill_id)
     if (conversation) {
       if(this.state.sendReview === true){
