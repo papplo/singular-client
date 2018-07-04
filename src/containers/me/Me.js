@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Me.css';
-import { SkillForm } from '../../components/'
+import { ProfileForm, SkillForm, SkillList, User } from '../../components/'
 import { updateProfileActionCreator, createSkillActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
-import ProfileForm from '../../components/forms/ProfileForm';
 
 // INSTURCTIONS
 // to update profile: this.putUpdatedProfile(userObj)
@@ -35,8 +34,6 @@ class Me extends Component {
     this.setState({skillSubmitted: true})
   }
 
-
-
   showSubmitProfile = (event) => {
     event.preventDefault();
     this.props.updateProfile(this.state.me, this.props.token);
@@ -51,7 +48,15 @@ class Me extends Component {
       me: newMe
     },
     () => console.log('this.state.me['+target.name+']:', this.state.me[target.name])
-  )
+    )
+  }
+
+  createSkill = (skill) => {
+    this.props.createSkill(skill, this.props.token)
+  }
+
+  showOrCreateSkills = () =>{
+
   }
 
   renderOrRedirect = () => {
@@ -59,14 +64,14 @@ class Me extends Component {
     else {
       return (
         <div className='MeContainer container'>
-          <img src={this.state.me.img_url}></img>
-          <p>Me Page, user: {this.props.profile.body.name}</p>
-          <p>user? {this.state.me.name}</p>
-          <button onClick={this.createMockSkill}>Create skill</button>
-
+          <User user={this.props.profile}/>
           <ProfileForm me={this.state.me} inputChange={this.handleInputChangeProfile}
-            submit={this.showSubmitProfile}></ProfileForm>
-
+            submit={this.showSubmitProfile}/>
+          <br/>
+          <h2>User Skills</h2>
+          <SkillList skills={this.props.profile.body.skills}/>
+          <SkillForm  categories = {this.props.categories} profile={this.props.profile}
+            createSkill={this.createSkill}/>
         </div>
       )
     }
@@ -74,12 +79,7 @@ class Me extends Component {
 
   render () {
     return (
-      <div>
       <div>{this.renderOrRedirect()}</div>
-      <div>
-      <SkillForm  categories = {this.props.categories} profile={this.props.profile} createSkill={(skill)=>{this.props.createSkill(skill, this.props.token)}}/>
-    </div>
-    </div>
     )
   }
 }
@@ -88,7 +88,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
   token: state.token,
   skillCreated: state.createSkill,
-  categories: state.categories,
+  categories: state.categories
 });
 
 const mapDispatchToProps = (dispatch) => ({

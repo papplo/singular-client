@@ -20,6 +20,7 @@ class Chat extends Component {
   }
 
   componentDidMount() {
+    this.nameInput.focus();
     this.timer = setInterval(() => {
       this.updateChat();
     }, 5000)
@@ -50,15 +51,6 @@ class Chat extends Component {
     })
   }
 
-  renderButtons = () => {
-    return (
-      <div>
-        {/* <button onClick={this.handleSubmit}>Send</button> */}
-        <button onClick={this.props.chatToggle}>Back</button>
-      </div>
-    )
-  }
-
   handleChange = (event) => {
     this.setState({input: event.target.value});
   }
@@ -73,22 +65,24 @@ class Chat extends Component {
 
   render () {
     return (
-      <div>
-        <div>
+      <div className='container' style={{height: '82vh'}}>
+        <div className='' style={{height: '78vh', overflow: 'scroll', overflowX: 'hidden'}}>
           {this.renderMessages()}
         </div>
 
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            <input autoComplete="off" type='text' className='messageInput' placeholder="say something" name='inputValue' value={this.state.input} onChange={this.handleChange}/>
-          </label>
-          <input type="submit" value="Send" />
-        </form>
-
-        <div>
-          {/* <input autoComplete="off" type='text' className='messageInput' placeholder="say something" name='inputValue' value={this.state.input} onChange={this.handleChange}/> */}
+        <div className=''>
+          <form onSubmit={this.handleSubmit} className='is-pulled-down'>
+            <label className='field has-addons'>
+              <div className="control is-expanded">
+                <input autoComplete="off" type='text' className='input' placeholder="say something" name='inputValue' value={this.state.input} onChange={this.handleChange} ref={(input) => { this.nameInput = input; }}/>
+              </div>
+              <div className="control">
+                <input type="submit" value="Send" className='button' />
+              </div>
+            </label>
+          </form>
         </div>
-        {this.renderButtons()}
+
       </div>
     )
   }
