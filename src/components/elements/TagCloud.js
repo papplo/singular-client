@@ -4,7 +4,21 @@ import { Link } from 'react-router-dom';
 
 export default class TagCloud extends AsyncList {
 
-
+  renderTags = (elem) => {
+    if (this.props.renderColor) {
+      return(
+        <span className="tag is-rounded is-large is-capitalized is-primary">
+        {elem.name}
+        </span>
+      )
+    } else {
+      return(
+        <span className="tag is-rounded is-large is-capitalized">
+          {elem.name}
+        </span>
+      )
+    }
+  }
 
   render() {
     return (
@@ -16,10 +30,9 @@ export default class TagCloud extends AsyncList {
             <Link
               key={elem.pk_category_id}
               to={'category/' + elem.name}>
-              <span
-                className="tag is-rounded is-medium is-capitalized">
-                {elem.name}
-              </span>
+              <div className="has-half-padding-top">
+                {this.renderTags(elem)}
+              </div>
             </Link>
           )
         )}
