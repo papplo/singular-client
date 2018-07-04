@@ -13,7 +13,9 @@ class Me extends Component {
     super(props);
     this.state = {
       me: 'unloaded',
-      skillSubmitted: false
+      skillSubmitted: false,
+      showOrCreate: 'show',
+      updateStatus: false
     }
   }
 
@@ -27,6 +29,13 @@ class Me extends Component {
       this.setState({skillSubmitted: false})
       this.props.fetchProfile(this.props.token);
     }
+    if (this.props.updateProfile.status === 201 && this.state.updateStatus === false) {
+      this.setState({updateStatus: true})
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.clear('UPDATE_PROFILE_CLEAR');
   }
 
   postNewSkill = (newSkill) => {
@@ -37,6 +46,7 @@ class Me extends Component {
   showSubmitProfile = (event) => {
     event.preventDefault();
     this.props.updateProfile(this.state.me, this.props.token);
+    this.setState({updateStatus: true})
   }
 
   handleInputChangeProfile = (event) => {
@@ -52,26 +62,57 @@ class Me extends Component {
   }
 
   createSkill = (skill) => {
-    this.props.createSkill(skill, this.props.token)
+    this.props.createSkill(skill, this.props.token);
+    this.setState({
+      showOrCreate : 'show',
+      skillSubmitted: true
+    });
+  }
+
+  goToAddSkill = () => {
+    this.setState({showOrCreate : 'create'});
+  }
+
+  goToShowSkills = () => {
+    this.setState({showOrCreate : 'show'});
   }
 
   showOrCreateSkills = () =>{
-
+    if (this.state.showOrCreate === 'show') {
+      return (
+        <div className="section">
+          <div className="level">
+            <p className="title is-4 level-left">Your Skills</p>
+            <button className="button is-link is-outlined level-right" onClick={this.goToAddSkill}>
+              Add a new Skill</button>
+          </div>
+          <SkillList skills={this.props.profile.body.skills}/>
+        </div>
+      )
+    } else {
+      return (
+        <div className="section">
+          <div className="level">
+            <p className="title is-4 level-left">Create a new Skill</p>
+            <button className="button is-link is-outlined level-right" onClick={this.goToShowSkills}>
+              Go back</button>
+          </div>
+          <SkillForm  categories = {this.props.categories} profile={this.props.profile}
+            createSkill={this.createSkill}/>
+        </div>
+      );
+    }
   }
 
   renderOrRedirect = () => {
-    if (this.props.profile.status !== 200) return <Redirect to='/login' />
+    if (!this.props.profile.body.pk_user_id) return <Redirect to='/login' />
     else {
       return (
         <div className='MeContainer container'>
           <User user={this.props.profile}/>
           <ProfileForm me={this.state.me} inputChange={this.handleInputChangeProfile}
-            submit={this.showSubmitProfile}/>
-          <br/>
-          <h2>User Skills</h2>
-          <SkillList skills={this.props.profile.body.skills}/>
-          <SkillForm  categories = {this.props.categories} profile={this.props.profile}
-            createSkill={this.createSkill}/>
+            submit={this.showSubmitProfile} updateStatus={this.state.updateStatus}/>
+          {this.showOrCreateSkills()}
         </div>
       )
     }
@@ -88,12 +129,14 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
   token: state.token,
   skillCreated: state.createSkill,
-  categories: state.categories
+  categories: state.categories,
+  updateProfile: state.updateProfile
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updateProfile: (me, token) => dispatch(updateProfileActionCreator(me, token)),
   fetchProfile: (userToken) => dispatch(fetchProfileActionCreator(userToken)),
   createSkill: (skill, token) => dispatch(createSkillActionCreator(skill, token)),
+  clear: (actionName) => dispatch({type: actionName})
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Me);
