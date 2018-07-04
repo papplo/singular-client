@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import './Me.css';
-import { SkillForm, SkillList } from '../../components/'
+import { ProfileForm, SkillForm, SkillList, User } from '../../components/'
 import { updateProfileActionCreator, createSkillActionCreator, fetchProfileActionCreator } from '../../store/actions/actions';
-import ProfileForm from '../../components/forms/ProfileForm';
 
 // INSTURCTIONS
 // to update profile: this.putUpdatedProfile(userObj)
@@ -35,8 +34,6 @@ class Me extends Component {
     this.setState({skillSubmitted: true})
   }
 
-
-
   showSubmitProfile = (event) => {
     event.preventDefault();
     this.props.updateProfile(this.state.me, this.props.token);
@@ -58,24 +55,23 @@ class Me extends Component {
     this.props.createSkill(skill, this.props.token)
   }
 
+  showOrCreateSkills = () =>{
+
+  }
+
   renderOrRedirect = () => {
     if (this.props.profile.status !== 200) return <Redirect to='/login' />
     else {
       return (
         <div className='MeContainer container'>
-          <img src={this.state.me.img_url}></img>
-          <p>Me Page, user: {this.props.profile.body.name}</p>
-          <p>user? {this.state.me.name}</p>
-          <button onClick={this.createMockSkill}>Create skill</button>
-
+          <User user={this.props.profile}/>
           <ProfileForm me={this.state.me} inputChange={this.handleInputChangeProfile}
-            submit={this.showSubmitProfile}></ProfileForm>
-
+            submit={this.showSubmitProfile}/>
+          <br/>
+          <h2>User Skills</h2>
           <SkillList skills={this.props.profile.body.skills}/>
-
           <SkillForm  categories = {this.props.categories} profile={this.props.profile}
             createSkill={this.createSkill}/>
-
         </div>
       )
     }
