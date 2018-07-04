@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './Profile.css';
 import pathParser from '../../services/pathparser';
 import { fetchUserActionCreator } from '../../store/actions/actions';
-import {  Reviews, User, ActivityList } from '../../components/';
+import { Reviews, User, ActivityList, SkillList } from '../../components/';
 
 
 //PATH: root/user_id
@@ -27,26 +27,34 @@ class Profile extends Component {
     if (!userID) return;
     this.props.fetchUser(userID);
   }
+
   render () {
     console.log('here', this.props.skills.status);
     return (
       <div className="container user-profile">
-        <div className="section has-half-padding">
+        <div className="section user-bio has-half-padding">
           <User user={this.props.user}>
             <p className="subtitle is-6 is-serif has-half-padding has-text-grey ">{this.props.user.status === 200 && this.props.user.body.description}</p>
           </User>
         </div>
 
-      <div className="section user-skills">
-        <ActivityList skills={this.props.skills}/>
-      </div>
+        <div className="section user-skills has-half-padding">
+          <p className="title is-5 has-text-grey-dark">
+            See what {this.props.user && this.props.user.body.name} shares  <span className="icon is-small has-text-primary">
+              <i className="fas fa-arrows-alt-h"></i>
+            </span>
 
-      <div className="section user-reviews">
-        <p className="subtitle has-text-centered is-size-12 ">
-          What other people say...
-        </p>
-        <Reviews elem={this.props.user} />
-      </div>
+
+          </p>
+          <SkillList cards={true} skills={this.props.user.status === 200 && this.props.user.body.skills }/>
+        </div>
+
+        <div className="section user-reviews has-half-padding-top">
+          <p className="title is-4 has-text-grey-dark">
+            What other people say
+          </p>
+            <Reviews elem={this.props.user} />
+        </div>
     </div>
     )
   }
