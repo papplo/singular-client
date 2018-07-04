@@ -53,23 +53,25 @@ export default class Reviews extends AsyncList {
 
   render() {
     return (
-      <div >
+      <div className="columns is-multiline">
         {this.props.elem.body && this.renderAsyncList(
           this.props.elem.status,
           this.props.elem.body.reviews,
           (review) => {
             return (
-            <div className="card" key={review.pk_review_id}>
-              <div className="card-content">
-                <div className="media">
-                  <div className="media-left">
-                    <figure className="image is-64x64 ">
-                      <img className="is-rounded" src={review.sender_img} alt="Placeholder image"/>
-                    </figure>
-                  </div>
-                  <div className="media-content ">
-                    <p className="subtitle is-6">{review.description}</p>
-                    <p >{review.sender_name}</p>
+            <div className="column is-one-third">
+              <div className="card is-round card-review" key={review.pk_review_id}>
+                <div className="card-content">
+                  <div className="media">
+                    <div className="media-left">
+                      <figure className="image is-64x64 ">
+                        <img className="is-rounded" src={review.sender_img} alt="Placeholder image"/>
+                      </figure>
+                    </div>
+                    <div className="media-content ">
+                      <p className="title is-5 is-serif has-text-grey">{review.sender_name}</p>
+                      <p className="subtitle is-6">{review.description}</p>
+                    </div>
                   </div>
                 </div>
               </div>

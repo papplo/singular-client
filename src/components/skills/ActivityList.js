@@ -14,7 +14,7 @@ export default class ActivityList extends AsyncList {
             <article className="media skills-list" key={elem.pk_skill_id}>
             <figure className="media-left">
               <p className="image is-64x64 ">
-                <img className="is-circular" src={elem.img_url || 'https://bulma.io/images/placeholders/64x64.png'} alt={elem.title} />
+                <img className="is-perfect-round" src={elem.img_url || 'https://bulma.io/images/placeholders/64x64.png'} alt={elem.title} />
               </p>
             </figure>
             <div className="media-content">

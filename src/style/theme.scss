@@ -117,6 +117,16 @@ body .is-serif {
   }
 }
 
+.card-review {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   background-color: $white-ter !important;
+}
+.card-review .card-footer {
+   margin-top: auto;
+}
+
 .card.skill {
   & .media {
   height: 50vw;
@@ -125,6 +135,27 @@ body .is-serif {
 }
 .field.is-grouped.is-centered {
   justify-content: center !important;
+}
+
+div.user-skills {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+
+  & .card.skill {
+    display: inline-block;
+    max-width: 41vw;
+    min-width: 35vw;
+    margin-right: 1rem;
+    & .media {
+      white-space: pre-line;
+      height: calc(20vh + 10vw);
+      & .title {
+        font-size: calc(1rem + 1.2vw);
+      }
+    }
+  }
 }
 
 // Helpers!!!
@@ -155,6 +186,10 @@ body .is-serif {
 
 .is-round {
     border-radius: $radius-large !important;
+}
+
+.is-perfect-round {
+    border-radius: $radius-large * 2;
 }
 
 .has-stroke {

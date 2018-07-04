@@ -36,19 +36,28 @@ class Category extends Component {
 
   filterList = (event) => {
     // make spinner loader appear
-    event.currentTarget.classList.add('is-loading');
+    //event.currentTarget.classList.add('is-loading');
+    //event.currentTarget.children[1].classList.remove('fa-search');
+    // event.currentTarget.children[1].classList.add('fa-times');
+
+
     let updatedList = this.props.skills.body;
 
     updatedList = updatedList.filter((item) => {
       return item.title.toLowerCase().search(
         event.target.value.toLowerCase()) !== -1;
     });
-    console.log(updatedList.length);
     this.setState({filteredList: {
       status: 200,
       body: updatedList
     }});
-    event.currentTarget.classList.remove('is-loading');
+    // event.currentTarget.classList.remove('is-loading');
+  }
+
+  iconRender () {
+    <span className="icon is-small is-right" onClick={(e) => this.clearSearch(e)}>
+      <i className="fas fa-search"></i>
+    </span>
   }
 
   clearSearch = (event) => {
@@ -72,12 +81,7 @@ class Category extends Component {
               <div className="control has-icons-right is-medium"
                 onChange={(e) => this.filterList(e)}>
                 <input type="search" className="input is-medium" type="email" placeholder="Search for a tag, name or person" />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-envelope"></i>
-                </span>
-                <span className="icon is-small is-right" onClick={(e) => this.clearSearch(e)}>
-                  <i className="fas fa-check">x</i>
-                </span>
+                {this.iconRender()}
               </div>
           </div>
           <p className="subtitle">
