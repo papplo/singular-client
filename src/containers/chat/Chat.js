@@ -25,7 +25,7 @@ class Chat extends Component {
     this.nameInput.focus();
     this.timer = setInterval(() => {
       this.updateChat();
-    }, 5000)
+    }, 500000)
     if (this.props.conversation.status === 'unloaded' && this.props.conversationID.render) this.props.getConversation(this.props.conversationID.conversationID, this.props.token)
     this.scrollToBottom();
   }

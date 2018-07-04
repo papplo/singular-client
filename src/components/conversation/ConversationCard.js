@@ -6,10 +6,6 @@ const ConversationCard = (props, buttons, toggle, token) => {
 
   const renderButtons = () => {
     if (buttons === 0) return <p>waiting for approval</p>
-  //   if (buttons === 1) return [
-  //   <button onClick={() => toggle(props.pk_conversation_id, 'accept', token)}>Approve</button>, 
-  //   <button  onClick={() => toggle(props.pk_conversation_id, 'reject', token)}>Ignore</button>
-  // ]
     if (buttons === 1) return [
       <a className="button is-success" onClick={() => toggle(props.pk_conversation_id, 'accept', token)}>
         <span className="icon">
@@ -35,11 +31,15 @@ const ConversationCard = (props, buttons, toggle, token) => {
     
   }
 
+  const renderDelete = () => {
+    if (buttons !== 1) return <button class="delete"></button>;
+  }
+
   return (
-    <article className="media">
-      <figure className="media-left">
-        <p className="image is-96x96">
-          <img src={props.contact_img_url}/>
+    <article class="media">
+      <figure class="media-left">
+        <p class="image is-96x96">
+          <img src={props.contact_img_url} className="is-circular"/>
         </p>
       </figure>
       <div className="media-content">
@@ -56,8 +56,8 @@ const ConversationCard = (props, buttons, toggle, token) => {
           </div>
         </nav>
       </div>
-      <div className="media-right">
-        <button className="delete"></button>
+      <div class="media-right">
+        {renderDelete()}
       </div>
     </article>
   )

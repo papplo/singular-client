@@ -67,8 +67,8 @@ class Inbox extends Component {
   renderOrRedirect = () => {
     if (this.props.token === 0) return <Redirect to='/login' />
     else return (
-      // <div className='inboxContainer panel' style={this.renderChatBackground()}>
-      <div className='inboxContainer panel' style={{}}>
+      <div className='inboxContainer panel' style={this.renderChatBackground()}>
+      {/* <div className='inboxContainer panel' style={{}}> */}
         {this.renderChatHeader()}
         <div className='conversationContainer' style={{marginLeft: '10px', marginRight: '10px'}}>
           {this.renderConversations()}
@@ -78,7 +78,7 @@ class Inbox extends Component {
   }
 
   renderChatBackground = () => {
-    if (this.props.renderChat.render) return {background: 'black'};
+    if (this.props.renderChat.render) return {background: 'hsl(0, 0%, 98%)'};
     else return {};
   }
 

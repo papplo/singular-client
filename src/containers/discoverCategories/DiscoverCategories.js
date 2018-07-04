@@ -20,7 +20,8 @@ class DiscoverCategories extends Component {
           </h2>
         </Hero>
         <TagCloud
-          categories={this.props.categories} />
+          categories={this.props.categories}
+          renderColor={true}/>
       </div>
     )
   }

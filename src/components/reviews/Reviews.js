@@ -31,13 +31,18 @@ export default class Reviews extends AsyncList {
     if (conversation) {
       if(this.state.sendReview === true){
       return (
-        <div className="section">
-        <textarea className="textarea" placeholder="Write a review about your experience" rows="6"
-          value={this.state.review} onChange={this.handleChange} ></textarea>
-          <p className="has-text-centered has-half-padding-top">
-            <a onClick={this.handleSubmit} className="button is-round is-medium is-primary"
-              type="submit">Add Review</a>
+        <div className="container add-reviews">
+          <p className="subtitle has-text-centered is-size-12 ">
+            Write your review!
           </p>
+          <div className="section">
+          <textarea className="textarea" placeholder="Share your experience here" rows="6"
+            value={this.state.review} onChange={this.handleChange} ></textarea>
+            <p className="has-text-centered has-half-padding-top">
+              <a onClick={this.handleSubmit} className="button is-round is-medium is-primary"
+                type="submit">Add Review</a>
+            </p>
+          </div>
         </div>
       )
       } else {
@@ -59,26 +64,28 @@ export default class Reviews extends AsyncList {
           this.props.elem.body.reviews,
           (review) => {
             return (
-            <div className="column is-one-third">
-              <div className="card is-round card-review" key={review.pk_review_id}>
-                <div className="card-content">
-                  <div className="media">
-                    <div className="media-left">
-                      <figure className="image is-64x64 ">
-                        <img className="is-rounded" src={review.sender_img} alt="Placeholder image"/>
-                      </figure>
-                    </div>
-                    <div className="media-content ">
-                      <p className="title is-5 is-serif has-text-grey">{review.sender_name}</p>
-                      <p className="subtitle is-6">{review.description}</p>
+              <div className="section">
+                <div className="column is-one-third">
+                  <div className="card is-round card-review" key={review.pk_review_id}>
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-left">
+                          <figure className="image is-64x64 ">
+                            <img className="is-rounded" src={review.sender_img_url} alt="Placeholder image"/>
+                          </figure>
+                        </div>
+                        <div className="media-content ">
+                          <p className="title is-5 is-serif has-text-grey">{review.sender_name}</p>
+                          <p className="subtitle is-6">{review.description}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )
+            )
           }
-      )}
+        )}
       {this.addReview()}
       </div>
     )
