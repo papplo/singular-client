@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({me, inputChange, submit}) => {
+export default ({me, inputChange, submit, updateStatus}) => {
   return (
     <div className="section">
       <p className="title is-4">About me</p>
@@ -48,6 +48,9 @@ export default ({me, inputChange, submit}) => {
         <div className="field is-grouped">
           <div className="control">
             <button className="button is-link">Save</button>
+          </div>
+          <div className="control">
+            <p className="button is-success" style={{display: !updateStatus ? 'none':'block'}}>Updated</p>
           </div>
         </div>
       </form>

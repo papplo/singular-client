@@ -14,7 +14,8 @@ class Me extends Component {
     this.state = {
       me: 'unloaded',
       skillSubmitted: false,
-      showOrCreate: 'show'
+      showOrCreate: 'show',
+      updateStatus: false
     }
   }
 
@@ -28,6 +29,13 @@ class Me extends Component {
       this.setState({skillSubmitted: false})
       this.props.fetchProfile(this.props.token);
     }
+    if (this.props.updateProfile.status === 201 && this.state.updateStatus === false) {
+      this.setState({updateStatus: true})
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.clear('UPDATE_PROFILE_CLEAR');
   }
 
   postNewSkill = (newSkill) => {
@@ -38,6 +46,7 @@ class Me extends Component {
   showSubmitProfile = (event) => {
     event.preventDefault();
     this.props.updateProfile(this.state.me, this.props.token);
+    this.setState({updateStatus: true})
   }
 
   handleInputChangeProfile = (event) => {
@@ -102,7 +111,7 @@ class Me extends Component {
         <div className='MeContainer container'>
           <User user={this.props.profile}/>
           <ProfileForm me={this.state.me} inputChange={this.handleInputChangeProfile}
-            submit={this.showSubmitProfile}/>
+            submit={this.showSubmitProfile} updateStatus={this.state.updateStatus}/>
           {this.showOrCreateSkills()}
         </div>
       )
@@ -120,12 +129,14 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
   token: state.token,
   skillCreated: state.createSkill,
-  categories: state.categories
+  categories: state.categories,
+  updateProfile: state.updateProfile
 });
 
 const mapDispatchToProps = (dispatch) => ({
   updateProfile: (me, token) => dispatch(updateProfileActionCreator(me, token)),
   fetchProfile: (userToken) => dispatch(fetchProfileActionCreator(userToken)),
   createSkill: (skill, token) => dispatch(createSkillActionCreator(skill, token)),
+  clear: (actionName) => dispatch({type: actionName})
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Me);
