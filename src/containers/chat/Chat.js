@@ -12,6 +12,7 @@ class Chat extends Component {
     super(props)
     this.state = {
       input: '',
+      messangeCount: 0,
     }
   }
 
@@ -34,7 +35,13 @@ class Chat extends Component {
       this.props.clear('CREATE_MESSAGE_CLEAR');
       this.props.getConversation(this.props.conversationID.conversationID, this.props.token);
     }
-    this.scrollToBottom();
+    if (this.props.conversation.status === 200 && this.state.messangeCount !== this.props.conversation.body.messages.length) {
+      this.setState({messangeCount: this.props.conversation.body.messages.length});
+      this.scrollToBottom();
+    }
+      
+    
+    
   }
 
   componentWillUnmount() {
