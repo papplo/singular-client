@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import Moment from 'react-moment';
 // import { ConversationCard } from '../../components/conversation/ConversationCard'
 // import { acceptOrRejectConversationActionCreator } from '../../store/actions/actions';
 import './Chat.css';
@@ -25,6 +26,7 @@ class Chat extends Component {
       this.updateChat();
     }, 5000)
     if (this.props.conversation.status === 'unloaded' && this.props.conversationID.render) this.props.getConversation(this.props.conversationID.conversationID, this.props.token)
+    this.scrollToBottom();
   }
 
   componentDidUpdate() {
@@ -32,6 +34,7 @@ class Chat extends Component {
       this.props.clear('CREATE_MESSAGE_CLEAR');
       this.props.getConversation(this.props.conversationID.conversationID, this.props.token);
     }
+    this.scrollToBottom();
   }
 
   componentWillUnmount() {
@@ -40,15 +43,36 @@ class Chat extends Component {
     this.props.clear('FETCH_CONVERSATION_CLEAR')
   }
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
   renderMessages = () => {
     if (this.props.conversation.status === 'unloaded') return;
     if (!this.props.conversation.body.messages) return;
     return this.props.conversation.body.messages.map((el) => {
-      if (el.message_creator_id === this.props.profile.body.pk_user_id) return <p>{'You: ' + el.message}</p>
- 
-      if (el.message_creator_id === this.props.conversation.body.fk_sender_user_id) return <p>{this.props.conversation.body.sender_name + ': ' + el.message}</p>
-      else return <p>{this.props.conversation.body.skill_creator_name + ': ' + el.message}</p>
-    })
+      
+      if (el.message_creator_id === this.props.profile.body.pk_user_id) return this.message(
+        'You', 
+        el.message, 
+        el.time_stamp, 
+        this.props.profile.body.img_url
+      );
+
+      if (el.message_creator_id === this.props.conversation.body.fk_sender_user_id) return this.message(
+        this.props.conversation.body.sender_name, 
+        el.message, 
+        el.time_stamp, 
+        this.props.conversation.body.sender_img_url
+      );
+
+      else return this.message(
+        this.props.conversation.body.skill_creator_name, 
+        el.message, 
+        el.time_stamp,
+        this.props.conversation.body.skill_creator_img_url
+      );
+    }).reverse()
   }
 
   handleChange = (event) => {
@@ -63,21 +87,51 @@ class Chat extends Component {
     this.setState({input: ''});
   }
 
+  message = (author, message, time, img) => {
+    return (
+      <div className='box' style={{marginLeft: '10px', marginRight: '10px', background: 'rgba(255, 255, 255, .8)'}}>
+        <article className="media">
+
+          <div className="media-left">
+            <figure className="image is-32x32">
+              <img src={img} alt="Image" className="is-circular"/>
+            </figure>
+          </div>
+          <div className="media-content">
+            <div className="content">
+              <strong>{author}</strong> <small><Moment fromNow>{time}</Moment></small>
+              <br/>
+              <p className="subtitle">{message}</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    )
+  }
+
+  renderButton = () => {
+    if (this.props.sentStatus.status === 'unloaded') return <input type="submit" value="Send" className='button' />;
+    else return <a class="button is-loading">Send</a>
+  }
+
   render () {
     return (
-      <div className='container' style={{height: '82vh'}}>
-        <div className='' style={{height: '78vh', overflow: 'scroll', overflowX: 'hidden'}}>
+      <div className='container'> 
+        <div className='' style={{overflow: 'hidden', paddingBottom: '70px'}}>
           {this.renderMessages()}
         </div>
+        <div style={{ float:"left", clear: "both" }}
+             ref={(el) => { this.messagesEnd = el; }}>
+        </div>
 
-        <div className=''>
-          <form onSubmit={this.handleSubmit} className='is-pulled-down'>
+        <div className='navbar is-fixed-bottom' style={{marginLeft: '10px', marginRight: '10px', display: 'block'}}>
+          <form onSubmit={this.handleSubmit} className=''>
             <label className='field has-addons'>
               <div className="control is-expanded">
                 <input autoComplete="off" type='text' className='input' placeholder="say something" name='inputValue' value={this.state.input} onChange={this.handleChange} ref={(input) => { this.nameInput = input; }}/>
               </div>
               <div className="control">
-                <input type="submit" value="Send" className='button' />
+                {this.renderButton()}
               </div>
             </label>
           </form>
