@@ -29,12 +29,37 @@ body .is-serif {
   .category-title h1 {
     font-weight: 200 !important; }
 
+.card-review {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: whitesmoke !important; }
+
+.card-review .card-footer {
+  margin-top: auto; }
+
 .card.skill .media {
   height: 50vw;
   align-items: flex-end; }
 
 .field.is-grouped.is-centered {
   justify-content: center !important; }
+
+div.user-skills {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch; }
+  div.user-skills .card.skill {
+    display: inline-block;
+    max-width: 41vw;
+    min-width: 35vw;
+    margin-right: 1rem; }
+    div.user-skills .card.skill .media {
+      white-space: pre-line;
+      height: calc(20vh + 10vw); }
+      div.user-skills .card.skill .media .title {
+        font-size: calc(1rem + 1.2vw); }
 
 .is-paddingless-bottom {
   padding-bottom: 0 !important; }
@@ -55,6 +80,9 @@ body .is-serif {
 
 .is-round {
   border-radius: 6px !important; }
+
+.is-perfect-round {
+  border-radius: 12px; }
 
 .has-stroke-top {
   border-bottom: 1px solid #dbdbdb; }
