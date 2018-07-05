@@ -32,10 +32,10 @@ export default class Reviews extends AsyncList {
       if(this.state.sendReview === true){
       return (
         <div className="container add-reviews">
-          <p className="subtitle has-text-centered is-size-12 ">
-            Write your review!
-          </p>
-          <div className="section">
+          <div className="section has-half-padding-top">
+            <p className="subtitle has-text-centered is-size-12 has-half-padding-top">
+              Write your review!
+            </p>
           <textarea className="textarea" placeholder="Share your experience here" rows="6"
             value={this.state.review} onChange={this.handleChange} ></textarea>
             <p className="has-text-centered has-half-padding-top">
