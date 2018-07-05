@@ -58,17 +58,17 @@ export default class ModalFX extends React.Component {
     openModal.forEach((modal) => {
       modal.classList.remove(this.elements.active);
     })
-    this.unFreeze();
+    //this.unFreeze();
   }
 
   openModal = () => {
     this.refs.modal.classList.add(this.elements.active);
-    this.freeze();
+    //this.freeze();
   }
 
   closeModal = () => {
     this.refs.modal.classList.remove(this.elements.active);
-    this.unFreeze();
+    //this.unFreeze();
   }
 
   freeze = () => {

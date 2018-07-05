@@ -64,14 +64,13 @@ export default class Reviews extends AsyncList {
           this.props.elem.body.reviews,
           (review) => {
             return (
-              <div className="section">
                 <div className="column is-one-third">
                   <div className="card is-round card-review" key={review.pk_review_id}>
                     <div className="card-content">
                       <div className="media">
                         <div className="media-left">
                           <figure className="image is-64x64 ">
-                            <img className="is-rounded" src={review.sender_img_url} alt="Placeholder image"/>
+                            <img className="is-rounded" src={review.sender_img_url} alt="Avatar sender"/>
                           </figure>
                         </div>
                         <div className="media-content ">
@@ -82,7 +81,6 @@ export default class Reviews extends AsyncList {
                     </div>
                   </div>
                 </div>
-              </div>
             )
           }
         )}

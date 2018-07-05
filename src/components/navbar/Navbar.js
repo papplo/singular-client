@@ -68,7 +68,7 @@ export default class Navbar extends React.Component {
 
         <div id="navMenu" className="navbar-menu navbar-end">
           <div className="navbar-end has-text-centered" onClick={this.navMenuToggle}>
-            <Link className="navbar-item" to="/discover-categories">Topics</Link>
+            <Link className="navbar-item" to="/discover-categories">Categories</Link>
             {this.showLogin()}
             <Link className="navbar-item" to="/inbox">Inbox</Link>
           </div>

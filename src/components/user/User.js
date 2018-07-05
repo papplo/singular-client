@@ -23,7 +23,7 @@ export default class User extends AsyncList {
                 <div className="media">
                     <div className="media-left">
                         <figure className="image is-64x64">
-                          <img className="is-circular is-64x64" src={user.img_url} alt="Placeholder image"/>
+                          <img className="is-circular is-64x64" src={user.img_url} alt="Avatar user"/>
                         </figure>
                     </div>
                     <div className="media-content ">

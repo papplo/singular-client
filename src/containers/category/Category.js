@@ -78,7 +78,7 @@ class Category extends Component {
   render () {
     console.log('skills: ', this.props.skills);
     return (
-      <div>
+      <div className="discover-category">
         <section style={{background: "url(" + this.renderBackground() + ")"}} className="section is-center has-stroke-bottom has-half-padding-top has-text-warning has-bg-img">
           <div className="container category-title">
             <h1 className="title is-capitalized has-text-warning is-2">

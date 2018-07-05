@@ -18,7 +18,7 @@
 // $white:        hsl(0, 0%, 100%) !default
 //
 // $orange:       hsl(14,  100%, 53%) !default
-// $yellow:       hsl(48,  100%, 67%) !default
+// $yellow:       hsl(48,  3%, 67%) !default
 // $green:        hsl(141, 71%,  48%) !default
 // $turquoise:    hsl(171, 100%, 41%) !default
 // $cyan:         hsl(204, 86%,  53%) !default
@@ -92,11 +92,24 @@ body .is-serif {
       position: absolute !important;
       position: absolute;
       width: 100vw;
-      background-color: $turquoise;
+      height: 100vh;
+      background-color: rgba(255,255,250, .9);
       flex-direction: column;
       align-items: center;
+
+      & .navbar-end .navbar-item{
+        font-size: 1.8rem;
+        line-height: 300%;
+      }
+
     }
   }
+}
+
+
+.discover-category .section {
+  background-size: cover !important;
+  background-position: center bottom !important;
 }
 
 // components
