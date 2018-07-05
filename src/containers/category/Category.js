@@ -81,7 +81,7 @@ class Category extends Component {
       <div className="discover-category">
         <section style={{background: "url(" + this.renderBackground() + ")"}} className="section is-center has-stroke-bottom has-half-padding-top has-text-warning has-bg-img">
           <div className="container category-title">
-            <h1 className="title is-capitalized has-text-warning is-2">
+            <h1 className="title is-capitalized has-text-white has-text-weight-bold	 is-2">
               {this.state.category}
             </h1>
           </div>

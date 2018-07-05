@@ -13,7 +13,7 @@ export default class TagCloud extends AsyncList {
       )
     } else {
       return(
-        <span className="tag is-rounded is-large is-capitalized">
+        <span className="tag is-rounded is-large is-capitalized is-outlined">
           {elem.name}
         </span>
       )
@@ -30,9 +30,7 @@ export default class TagCloud extends AsyncList {
             <Link
               key={elem.pk_category_id}
               to={'category/' + elem.name}>
-              <div className="has-half-padding-top">
                 {this.renderTags(elem)}
-              </div>
             </Link>
           )
         )}
