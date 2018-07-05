@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import ModalFx from "../../services/modalFx";
 
+import logo from '../../assets/logo-singular.svg';
 export default class Navbar extends React.Component {
 
   navMenuToggle() {
@@ -55,7 +56,9 @@ export default class Navbar extends React.Component {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <Link id="homeItem" className="navbar-item"
-            onClick={this.logoHomeToggle} to="/">Logo and Home</Link>
+            onClick={this.logoHomeToggle} to="/">
+            <img className="logotype" src={logo} alt="Singular"/>
+          </Link>
 
           <span role="button" id="burger" className="navbar-burger" data-target="navMenu"
             onClick={this.navMenuToggle}
