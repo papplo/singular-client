@@ -10,18 +10,20 @@ import './DiscoverCategories.css';
 class DiscoverCategories extends Component {
   render () {
     return (
-      <div>
+      <div className="discover-categories">
         <Hero
           color="light"
-          title="Explore the categories in "
+          title="Explore all categories in "
           userLocation={this.props.location}>
-          <h2 className="subtitle has-text-centered is-size-6 has-text-grey">
+          <h2 className="subtitle has-text-centered is-size-5 has-text-grey">
             Not in {this.props.location.status === 200 && this.props.location.body.city}? <strong>Change your location</strong>!
           </h2>
         </Hero>
-        <TagCloud
-          categories={this.props.categories}
-          renderColor={true}/>
+        <div className="section">
+          <TagCloud
+            categories={this.props.categories}
+            renderColor={true}/>
+        </div>
       </div>
     )
   }

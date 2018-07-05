@@ -107,6 +107,10 @@ body .is-serif {
 }
 
 
+#homeItem {
+  width: 100px !important;
+}
+
 .discover-category .section {
   background-size: cover !important;
   background-position: center bottom !important;
@@ -126,7 +130,7 @@ body .is-serif {
   display: flex;
   align-items: flex-end;
   & h1 {
-    font-weight: 200 !important;
+    font-weight: 700 !important;
   }
 }
 
