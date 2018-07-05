@@ -109,7 +109,9 @@ class Me extends Component {
     else {
       return (
         <div className='MeContainer container'>
-          <User user={this.props.profile}/>
+          <div className="section has-half-padding-bottom">
+            <User user={this.props.profile}/>
+          </div>
           <ProfileForm me={this.state.me} inputChange={this.handleInputChangeProfile}
             submit={this.showSubmitProfile} updateStatus={this.state.updateStatus}/>
           {this.showOrCreateSkills()}
