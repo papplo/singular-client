@@ -18,7 +18,8 @@ class SkillProfile extends Component {
       message: '',
       redirect: false,
       modalOpen: false,
-      sendRequest: false
+      sendRequest: false,
+      skillID: 0,
     };
   }
 
@@ -37,6 +38,11 @@ class SkillProfile extends Component {
       this.props.clear('CREATE_CONVERSATION_CLEAR');
       this.props.fetchProfile(this.props.token);
     }
+
+    if (this.props.reviewCreated.status === 201) {
+      this.props.clear('CREATE_REVIEW_CLEAR');
+      this.props.idSkill(this.state.skillID);
+    }
   }
 
   componentWillUnmount() {
@@ -47,6 +53,7 @@ class SkillProfile extends Component {
   initialize = async () => {
     const skillId = (await pathParser(this.props.location.pathname)).first;
     if (!skillId) return;
+    this.setState({skillID: skillId})
     this.props.idSkill(skillId);
   }
 
@@ -160,6 +167,7 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
   token: state.token,
   skillCreated: state.createConversation,
+  reviewCreated: state.createReview,
 
 });
 const mapDispatchToProps = (dispatch) => ({

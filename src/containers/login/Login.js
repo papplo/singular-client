@@ -5,12 +5,6 @@ import './Login.css';
 import FacebookLogin from 'react-facebook-login';
 import { fetchProfileActionCreator, saveUserTokenActionCreator } from '../../store/actions/actions';
 
-// Once we have working server, replace the state and map dispatch 
-// to props with the facebook response, witch in turn should should 
-// dispatch a new user object to the redux state. After that the 
-// loginorRedirect, function can check if we have a valid user, if 
-// not proceed to login with the button, otherwise redirect to previous page
-
 class Login extends Component {
 
   responseFacebook = (response) => {
@@ -37,7 +31,6 @@ class Login extends Component {
   render () {
     return (
       <div>
-        <p>Login Page. user: {this.props.profile.name}</p>
         {this.logInOrRedirect()}
       </div>
     )
