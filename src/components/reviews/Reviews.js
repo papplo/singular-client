@@ -71,7 +71,7 @@ export default class Reviews extends AsyncList {
                       <div className="media">
                         <div className="media-left">
                           <figure className="image is-64x64 ">
-                            <img className="is-rounded" src={review.sender_img_url} alt="Placeholder image"/>
+                            <img className="is-rounded" src={review.sender_img_url} alt="Avatar sender"/>
                           </figure>
                         </div>
                         <div className="media-content ">
