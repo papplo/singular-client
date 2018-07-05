@@ -20,8 +20,8 @@ class Home extends Component {
           userLocation={this.props.location}>
           <TagCloud categories={this.props.categories}/>
           <p className="is-size-6 has-text-centered">
-            Choose a Topic or
-            <Link to="/discover-categories"> explore all skills </Link>
+            Choose one or
+            <Link to="/discover-categories"> explore all categories</Link>
           </p>
         </Hero>
         <ActivityList skills={this.props.skills}/>
