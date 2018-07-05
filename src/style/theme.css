@@ -20,6 +20,10 @@ body .is-serif {
       font-size: 1.8rem;
       line-height: 300%; } }
 
+.discover-category .section {
+  background-size: cover !important;
+  background-position: center bottom !important; }
+
 .skills-list {
   margin-bottom: 1rem; }
   .skills-list figure img {
