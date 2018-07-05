@@ -14,12 +14,12 @@ class Home extends Component {
     return (
       <div>
         <Hero
-          color="dark"
-          title="Learn something exciting today in "
-          subTitle=""
-          userLocation={this.props.location}>
-          <TagCloud categories={this.props.categories}/>
-          <p className="is-size-6 has-text-centered">
+          color="light"
+          title="You're never too cool to learn something new "
+          userLocation="">
+          <TagCloud
+            categories={this.props.categories}/>
+          <p className="is-size-5 has-text-centered">
             Choose one or
             <Link to="/discover-categories"> explore all categories</Link>
           </p>

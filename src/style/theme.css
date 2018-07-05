@@ -20,6 +20,9 @@ body .is-serif {
       font-size: 1.8rem;
       line-height: 300%; } }
 
+#homeItem {
+  width: 100px !important; }
+
 .discover-category .section {
   background-size: cover !important;
   background-position: center bottom !important; }
