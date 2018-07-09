@@ -22,7 +22,7 @@ Runs the app in the development mode. [http://localhost:3000](http://localhost:3
 
 ## Singular app expects a REST api, follow these steps to install it!
 
-1. Clone the [Singular-server repo](https://github.com/cristinaguimaraes/skill-x-change-server), follow the steps to install and run mysql and get some sample data installed. Then run server on port 3010.
+1. Clone the [Singular-server repo](https://github.com/cristinaguimaraes/singular-server), follow the steps to install and run mysql and get some sample data installed. Then run server on port 3010.
 
 2. In client repo, configure `server_url` in `config/config.js`, to match local machine ip.
 
