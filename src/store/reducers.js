@@ -7,17 +7,16 @@ import {
   skills,
   createSkill,
   idSkill,
-  deleteSkill,
   genreSkills,
   profile,
   updateProfile,
   user,
   conversation,
   acceptOrRejectConversation,
-  rejectConversation,
   createReview,
   createMessage,
-  createConversation
+  createConversation,
+  //TODO: deleteSkill,
 } from './reducers/asyncDataReducer';
 
 export default combineReducers({

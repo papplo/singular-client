@@ -39,7 +39,7 @@ Runs the app in the development mode. [http://localhost:3000](http://localhost:3
 Feel free to make a pull request! We use the following Git Flow and branching strategy:
 
 1. Master is for deployment only
-2. `git checkout development` is the common branch that pull request are made on. represents the apps latest state
+2. `git checkout develop` is the common branch that pull request are made on. represents the apps latest state
 3. `git checkout -b name/feature` to create new branch for the feature you are building or fixing.
 4. `git push --set-upstream origin name/feature` to push to your cloned github repo
 5. in github create a pull request from new branch to origin/development
@@ -48,5 +48,5 @@ Feel free to make a pull request! We use the following Git Flow and branching st
 
 - [Cristina Guimaraes](https://github.com/cristinaguimaraes), Back End
 - [David Rebolleda](https://github.com/davidecorreu), Back End
-- [Christopher Harju](https://github.com/CKGHarju/skill-x-change-client), Front End
+- [Christopher Harju](https://github.com/CKGHarju), Front End
 - [Pablo Anttila](https://github.com/papplo), Front End
