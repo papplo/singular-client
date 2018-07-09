@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
-
 import '../style/theme.css';
-
 import Category from '../containers/category/Category';
 import DiscoverCategories from '../containers/discoverCategories/DiscoverCategories';
 import DiscoverSkills from '../containers/discoverSkills/DiscoverSkills';

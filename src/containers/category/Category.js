@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Hero, BulmaBoiler, TagCloud, ActivityList } from '../../components/'
+import { ActivityList } from '../../components/'
 
 import './Category.css';
 import pathParser from '../../services/pathparser'
@@ -55,15 +54,13 @@ class Category extends Component {
     // event.currentTarget.classList.remove('is-loading');
   }
 
-  iconRender () {
-    <span className="icon is-small is-right" onClick={(e) => this.clearSearch(e)}>
+  iconRender = ()  => {
+    return (
+    <span className="icon is-small is-right">
       <i className="fas fa-search"></i>
     </span>
-  }
-
-  clearSearch = (event) => {
-    // clear search in box
-    console.log(event.target);
+    )
+    
   }
 
   renderBackground = () => {
