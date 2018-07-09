@@ -4,11 +4,9 @@ Singular is a platform to explore and connect with peers through the power of le
 
 Singular is open and free to use, it enables a user to curate his profile and offer to teach unique skills to the community of users, all in a simple and friendly interface coupled to a secure login.
 
-![Uses ecmascript](https://forthebadge.com/images/badges/uses-js.svg)
-
 ### Screenshot
 
-![Screenshot No-Server](public/screenshot-noServer.png)
+![Screenshot No-Server](public/screenshot-singular.png)
 
 # Getting started
 
@@ -37,22 +35,6 @@ Runs the app in the development mode. [http://localhost:3000](http://localhost:3
 - Facebook Auth for user management and logins
 - Webfonts from Google
 
-
-### dependencies
-
-  "bulma": "^0.7.1",
-  "moment": "^2.22.2",
-  "node-sass-chokidar": "^1.3.0",
-  "react": "^16.4.1",
-  "react-dom": "^16.4.1",
-  "react-facebook-login": "^4.0.1",
-  "react-moment": "^0.7.7",
-  "react-redux": "^5.0.7",
-  "react-router-dom": "^4.3.1",
-  "react-scripts": "1.1.4",
-  "redux": "^4.0.0"
-
-
 # Contributing
 Feel free to make a pull request! We use the following Git Flow and branching strategy:
 
@@ -61,3 +43,10 @@ Feel free to make a pull request! We use the following Git Flow and branching st
 3. `git checkout -b name/feature` to create new branch for the feature you are building or fixing.
 4. `git push --set-upstream origin name/feature` to push to your cloned github repo
 5. in github create a pull request from new branch to origin/development
+
+# Project Contributors
+
+- [Cristina Guimaraes](https://github.com/cristinaguimaraes), Back End
+- [David Rebolleda](https://github.com/davidecorreu), Back End
+- [Christopher Harju](https://github.com/CKGHarju/skill-x-change-client), Front End
+- [Pablo Anttila](https://github.com/papplo), Front End
