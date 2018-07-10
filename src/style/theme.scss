@@ -1,0 +1,255 @@
+// Initial Variables (you can customize them by uncommenting below)
+@import 'bulma/sass/utilities/initial-variables.sass';
+
+// // Colors
+//
+// $black:        hsl(0, 0%, 4%) !default
+// $black-bis:    hsl(0, 0%, 7%) !default
+// $black-ter:    hsl(0, 0%, 14%) !default
+//
+// $grey-darker:  hsl(0, 0%, 21%) !default
+// $grey-dark:    hsl(0, 0%, 29%) !default
+// $grey:         hsl(0, 0%, 48%) !default
+// $grey-light:   hsl(0, 0%, 71%) !default
+// $grey-lighter: hsl(0, 0%, 86%) !default
+//
+// $white-ter:    hsl(0, 0%, 96%) !default
+// $white-bis:    hsl(0, 0%, 98%) !default
+// $white:        hsl(0, 0%, 100%) !default
+//
+// $orange:       hsl(14,  100%, 53%) !default
+// $yellow:       hsl(48,  3%, 67%) !default
+// $green:        hsl(141, 71%,  48%) !default
+// $turquoise:    hsl(171, 100%, 41%) !default
+// $cyan:         hsl(204, 86%,  53%) !default
+// $blue:         hsl(217, 71%,  53%) !default
+// $purple:       hsl(271, 100%, 71%) !default
+// $red:          hsl(348, 100%, 61%) !default
+//
+// // Typography
+//
+$family-sans-serif: 'Encode Sans Condensed', -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-serif: 'Scope One', -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+// $family-monospace: monospace !default
+// $render-mode: optimizeLegibility !default
+//
+// $size-1: 3rem !default
+// $size-2: 2.5rem !default
+// $size-3: 2rem !default
+// $size-4: 1.5rem !default
+// $size-5: 1.25rem !default
+// $size-6: 1rem !default
+// $size-7: 0.75rem !default
+//
+// $weight-light: 300 !default
+// $weight-normal: 400 !default
+// $weight-medium: 500 !default
+// $weight-semibold: 600 !default
+// $weight-bold: 700 !default
+//
+// // Responsiveness
+//
+// // The container horizontal gap, which acts as the offset for breakpoints
+// $gap: 64px !default
+// // 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+// $tablet: 769px !default
+// // 960px container + 4rem
+// $desktop: 960px + (2 * $gap) !default
+// // 1152px container + 4rem
+// $widescreen: 1152px + (2 * $gap) !default
+// $widescreen-enabled: true !default
+// // 1344px container + 4rem
+// $fullhd: 1344px + (2 * $gap) !default
+// $fullhd-enabled: true !default
+//
+// // Miscellaneous
+//
+// $easing: ease-out !default
+// $radius-small: 2px !default
+// $radius: 4px !default
+// $radius-large: 6px !default
+// $radius-rounded: 290486px !default
+// $speed: 86ms !default
+//
+// // Flags
+//
+// $variable-columns: true !default
+button, input, select, textarea, .is-sans {
+    font-family: $family-sans-serif !important;
+}
+
+body .is-serif {
+    font-family: $family-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.02em;
+}
+
+// Navbar navmenu on touch is-active
+@media screen and (max-width: 1087px) {
+  #navMenu {
+    &.is-active {
+      display: flex !important;
+      position: absolute !important;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255,255,250, .9);
+      flex-direction: column;
+      align-items: center;
+
+      & .navbar-end .navbar-item{
+        font-size: 1.8rem;
+        line-height: 300%;
+      }
+
+    }
+  }
+}
+
+
+#homeItem {
+  width: 100px !important;
+}
+
+.discover-category .section {
+  background-size: cover !important;
+  background-position: center bottom !important;
+}
+
+// components
+.skills-list {
+  margin-bottom: 1rem;
+  & figure img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.category-title {
+  height: 13vh;
+  display: flex;
+  align-items: flex-end;
+  & h1 {
+    font-weight: 700 !important;
+  }
+}
+
+.card-review {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   background-color: $white-ter !important;
+}
+.card-review .card-footer {
+   margin-top: auto;
+}
+
+.card.skill {
+  & .media {
+  height: 50vw;
+   align-items: flex-end;
+ }
+}
+.field.is-grouped.is-centered {
+  justify-content: center !important;
+}
+
+div.user-skills {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+
+  & .card.skill {
+    display: inline-block;
+    max-width: 41vw;
+    min-width: 35vw;
+    margin-right: 1rem;
+    & .media {
+      white-space: pre-line;
+      height: calc(20vh + 10vw);
+      & .title {
+        font-size: calc(1rem + 1.2vw);
+      }
+    }
+  }
+}
+
+// Helpers!!!
+.is-paddingless{
+  &-bottom {
+    padding-bottom: 0 !important;
+  }
+  &-top {
+    padding-bottom: 0 !important;
+  }
+}
+
+.has-half-padding {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+
+  &-top{
+    padding-top: 1.5rem !important;
+  }
+  &-bottom{
+    padding-bottom: 1.5rem !important;
+  }
+}
+
+.is-circular {
+    border-radius: $radius-rounded;
+}
+
+.is-round {
+    border-radius: $radius-large !important;
+}
+
+.is-perfect-round {
+    border-radius: $radius-large * 2;
+}
+
+.has-stroke {
+  &-top {
+    border-bottom: 1px solid $grey-lighter;
+  }
+  &-bottom {
+    border-bottom: 1px solid $grey-lighter;
+  }
+}
+
+
+a.custom {
+  -moz-transition: color 500ms ease;
+  -o-transition: color 500ms ease;
+  -webkit-transition: color 500ms ease;
+  transition: color 500ms ease;
+}
+a.custom:hover, a.hover:focus {
+  color: $white-ter;
+}
+
+a.custom {
+  text-decoration: none;
+  position: relative;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 2px, $grey 2px, $grey 3px, rgba(0, 0, 0, 0) 3px);
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  a.custom {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 2px, $grey 2px, $grey 2.5px, rgba(0, 0, 0, 0) 2.5px);
+  }
+}
+a.custom:hover, a.custom:focus {
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 2px, $grey-lighter 2px, $grey-lighter 3px, rgba(0, 0, 0, 0) 3px);
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  a.custom:hover, a.custom:focus {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 2px, $grey-lighter 2px, $grey-lighter 2.5px, rgba(0, 0, 0, 0) 2.5px);
+  }
+}
+
+
+
+
+// Main styling with bulma
+@import 'bulma/bulma.sass';
